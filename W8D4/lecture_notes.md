@@ -1,11 +1,11 @@
-1. [Polls App Solutions](Polls App Solutions)
+1. [Polls App Solutions](#Polls_App_Solutions)
    1. [results](#results)
    2. [#not_duplicate_response](#not_duplicate_response)
-      1. [sibling_responses](sibling_responses)
-      2. [respondent_is_not_poll_author](respondent_is_not_poll_author)
-2. [Metaprogramming Intro & Class Instance Vars](#Metaprogramming Intro & Class Instance Vars)
-   1. [Instance Vars](Instance Vars) 
-   2. [Send](Send)
+      1. [sibling_responses](#sibling_responses)
+      2. [respondent_is_not_poll_author](#respondent_is_not_poll_author)
+2. [Metaprogramming Intro & Class Instance Vars](#Metaprogramming_Intro_&_Class_Instance_Vars)
+   1. [Instance Vars](#Instance_Vars) 
+   2. [Send](#Send)
 ## Polls App Solutions
 ### `#results`
  - This can be done a number of ways, the most efficient way is a single query way using ActiveRecord
