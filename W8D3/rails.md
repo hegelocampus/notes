@@ -1,14 +1,14 @@
-#Rails Notes Day 2
-##General notes
+# Rails Notes Day 2
+## General notes
 
-##Association Methods & #joins
-  -Queries are lazy evaluated
-   -This means they are not actually run in SQL until the data needs to be
+## Association Methods & #joins
+  - Queries are lazy evaluated
+   - This means they are not actually run in SQL until the data needs to be
    accessed
-  -#joins will always use inner joins
-  -You can pass #joins one of your associations as a symbol to automatically
+  - #joins will always use inner joins
+  - You can pass #joins one of your associations as a symbol to automatically
   join based on how you setup the association
-##\#includes
+## #includes
   ex:
   ```ruby
     def self.print_all_bleats_by_location
@@ -20,10 +20,10 @@
 	  end
 	end
   ```
-  -You can use includes to streamline the queries to reduce the number of queries that are ran within an iteration.
-  -Querrying is the most expensive operation, so we should reduce the amount of
+  - You can use includes to streamline the queries to reduce the number of queries that are ran within an iteration.
+  - Querrying is the most expensive operation, so we should reduce the amount of
   queries preformed to the bare minimum
-  -You can do nested #includes just like nested joins.
+  - You can do nested #includes just like nested joins.
     e.g.,
 	```ruby
     def self.print_all_bleats_by_location
