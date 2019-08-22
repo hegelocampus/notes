@@ -21,6 +21,8 @@
 	end
   ```
   -You can use includes to streamline the queries to reduce the number of queries that are ran within an iteration.
+  -Querrying is the most expensive operation, so we should reduce the amount of
+  queries preformed to the bare minimum
   -You can do nested #includes just like nested joins.
     e.g.,
 	```ruby
