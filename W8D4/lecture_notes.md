@@ -1,10 +1,10 @@
-1. [Polls App Solutions](#polls_app_solutions)
+1. [Polls App Solutions](Polls App Solutions)
    1. [results](#results)
    2. [#not_duplicate_response](#not_duplicate_response)
       1. [sibling_responses](sibling_responses)
       2. [respondent_is_not_poll_author](respondent_is_not_poll_author)
-2. [Metaprogramming Intro & Class Instance Vars](Metaprogramming Intro & Class Instance Vars)
-   1. [Instance Vars](#Instance Vars) 
+2. [Metaprogramming Intro & Class Instance Vars](#Metaprogramming Intro & Class Instance Vars)
+   1. [Instance Vars](Instance Vars) 
    2. [Send](Send)
 ## Polls App Solutions
 ### `#results`
