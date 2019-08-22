@@ -1,29 +1,29 @@
 # Rails
 ## General Setup
-  -The annotate gem is helpful for quickly adding the schema information to the
+- The annotate gem is helpful for quickly adding the schema information to the
   model file
-  -Also a good idea to add the pry-rails gem
-  -Within the rails console you can use Object.methods to show all the methods
+- Also a good idea to add the pry-rails gem
+- Within the rails console you can use Object.methods to show all the methods
   that you can use on your object
 ## Migrations
- -Migrations are about changing the structure of the db and not about actually
+- Migrations are about changing the structure of the db and not about actually
   adding data
- -Migrate is used to make changes to the db
-    -use bundle exec rails generate migration ${migration name}
- -Whenever you create a table you should add  t.timestamps
-  -You will be thankful someday
- -bundle exec rails db:migrate to actually implement the migration
- -***Avoid using rollback whenever possible***
-  -It is much better practice to add a new migration that fixes the changes
+- Migrate is used to make changes to the db
+   - use bundle exec rails generate migration ${migration name}
+- Whenever you create a table you should add  t.timestamps
+   - You will be thankful someday
+- bundle exec rails db:migrate to actually implement the migration
+- ***Avoid using rollback whenever possible***
+   - It is much better practice to add a new migration that fixes the changes
 ## Models
-  -Models file needs to be the singularized version of the table name
-  -To declare that a file in the model dir is not a model use self.ablstact_class =
+- Models file needs to be the singularized version of the table name
+- To declare that a file in the model dir is not a model use self.ablstact_class =
   true
-    -This will makeit so rails doesn't try to relate the class to a table
+- This will makeit so rails doesn't try to relate the class to a table
 ## Associations
-  -The side that has the fogeign key has the belongs_to keyword/method
-    -has_many is constructed as follows
-    ```ruby
+- The side that has the fogeign key has the belongs_to keyword/method
+   - has_many is constructed as follows
+   ```ruby
     class User < ApplicationRecord
 
       has_many :authored_bleats,
@@ -35,8 +35,8 @@
         class_name: 'Location',
         primary_key: :id,
         foreign_key: :location_id
-    ```
-  -Can do through associations that link two tables that are not dirrectly
+   ```
+  - Can do through associations that link two tables that are not dirrectly
   associated
     ```ruby
     class Location < ApplicationPecord
@@ -49,25 +49,25 @@
         desired tabe
         source: :authored_bleats
     ```
-  -It is a good idea to add indicies onto foreign keys because they are
+  - It is a good idea to add indicies onto foreign keys because they are
   typically frequently accessed using joins and the incicies greatly speed up
   finding an object in joined table
-   -rails will use the foreign id instead of joining if it is avaliable
-##Validations
-  -Validations are about ensuring that we always have good data in our db
-  -Validations prevent invalid data from being set at all in the db
-   -If the data is found to be invalid then the changes will be immedietely rolled back
-  -Errors are checked for when you try to set the new data values in your database or when you use the ApplicationRecord#valid? method
-   -You can see the errors displayed using ApplicationRecord#errors.full_messageApplicationRecords
-  -**Associations are implicity required**
-   -Make sure you set `optional: true` if you want an association to be optional
-  -Built in validation looks like this:
+    - rails will use the foreign id instead of joining if it is avaliable
+## Validations
+- Validations are about ensuring that we always have good data in our db
+- Validations prevent invalid data from being set at all in the db
+- If the data is found to be invalid then the changes will be immedietely rolled back
+- Errors are checked for when you try to set the new data values in your database or when you use the ApplicationRecord#valid? method
+  - You can see the errors displayed using ApplicationRecord#errors.full_messageApplicationRecords
+  - **Associations are implicity required**
+  - Make sure you set `optional: true` if you want an association to be optional
+  - Built in validation looks like this:
     ```ruby
     class Bleat < ApplicationRecord
       validates :body, length: {maximum: 150}
     end
     ```
-  -You can create a custom validation as follows:
+  - You can create a custom validation as follows:
     ```ruby
     class Bleat < ApplicationRecord
       validate :ensure_bleats_arent_long
@@ -81,5 +81,5 @@
     end
     ```
 ## Seeding
-  -You can set up the ../db/seeds.rb in order to seed a test db
-  -Should start each db's construction with a #destroy
+- You can set up the ../db/seeds.rb in order to seed a test db
+- Should start each db's construction with a #destroy
