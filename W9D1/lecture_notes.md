@@ -18,8 +18,8 @@
 	- Deleting should be done through a `DELETE` request 
 	- **RESTful** conventions hold that all actions should be done in terms of the preceding actions
 ### Anatomy of a URL
-`https://www.google.com/something_here/longer_than_this/multiple_things?key1=val1&key2=val2`
-^scheme ^sub-domain     ^ This is all the path			  			  ^ query string begins with a ?
+`https://www.google.com/something_here/longer_than_this/multiple_things?key1=val1&key2=val2`  
+^scheme ^sub-domain     ^ This is all the path			  			  ^ query string begins with a ?  
 			 ^This is the host
 ## Building routes
 - `routes.rb` is in the config folder
