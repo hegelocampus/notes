@@ -1,0 +1,2 @@
+- You can do any query in any class from any action
+- E.g., you don't have to only do users table modification from the `UsersController`

@@ -63,3 +63,28 @@
   params.require(:bleat)
   ```
   - This will check that the user input contains the value we need and then raise a specific user input error if it does not find the value
+## `Controller#update` and `Controller#destroy`
+### `#update`
+- This should be something like: 
+```ruby
+if bleat.update(bleat_params)
+  render json: bleat
+else
+  render json: bleat.errors.full_messages, status:422
+end
+```
+- You can clean this up with a private helper method to define the `bleat_params`
+### `#destroy`
+This can be as simple as this:
+```ruby
+def destroy
+  bleat = Bleat.find(params[:id])
+  bleat.destroy 
+  render json: "Successfully destroyed the Bleat!"
+```
+- make sure you use the **destroy** method rather than the delete, because delete will only remove the object in question but destroy removes all related objects that you have defined using life-cycle hooks
+- find will raise an error if it doesn't find anything so we don't have to deal with trying to `#destroy` a `nil` object
+
+### Routes
+- You can use the rails console to see all the routes that rails has made with `$ bundle exec rails routes`
+- Nested routes also help to filter requests
