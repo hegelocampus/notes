@@ -24,8 +24,8 @@ end
 You will be expected to do basic user auth on the assessment
 FeGrip (iron grip) to remember the user model  
 The capital letters line up with the class methods
-- self.find_by_credentials
-- self.generate_session_token
+- `self.find_by_credentials`
+- `self.generate_session_token`
 
 ## Auth Intro, Log In on Signup, & `#current_user`
 - It is good practice to put `#current_user` in the `ApplicationController` with `helper_method :current_user`
@@ -34,8 +34,8 @@ The `#logged_in?` method would look something like this, it should also go in th
 ```ruby
 def logged_in?
   !!current_user
-  #!!nil => false
-  #!!user
+  ##!!nil => false # This is just exposition
+  ##!!user # This too
 end
 ```
 The double bang here is coercing a possibly nil value into a boolean  
