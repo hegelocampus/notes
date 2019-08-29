@@ -118,6 +118,32 @@ To hide the destroy button for non-author users you can do the following:
   - Add `authenticity_token` check to the `_form.html.erb`
   `<input type="hidden" name= "authenticity_token" value="<% form_authenticity_token %>"/>`
 - To get around this on our own app we will have to add the `authenticity_token` on any request that isn't a `GET` request
-- be very cautious about dropping a space before the `#{ from_authenticity_token }` in the following
+- Be very cautious about dropping a space before the `#{ from_authenticity_token }` in the following
 `value="#{ from_authenticity_token }" />`
-If there is a space preceding the `#{}` then it will be taken into account when checking for a matching value
+  - If there is a space preceding the `#{}` then it will be taken into account as part of the string when checking for a matching value
+  - This is pretty obvious but it is very easy to do by accident and it is a bug that is very hard to catch
+- Rails automatically escapes all content within ruby methods as being not html safe, you can indicate that something is html save with `<<-HTML.html_safe`
+  - You can use such a syntax to create a method that you can call from a `*.html.erb` file
+## Auth Review
+- User sets a password
+  - That password is hashed and the hashed password is assigned to the user in the db
+- A session_token is generated and is also assigned to the user
+  - We can either just create a brand new session token, or use `reset_session_token` it doesn't really matter which one we use here
+  - **A session token being assigned to the user is effectively what signs the user in**
+    - If there isn't a session token then the user is not signed in
+- We then call `#save` on the user to commit the data to the db
+- The user can then proceed to make user-restricted requests
+- If the user were to try to bleat:
+  - We would check to see if the user is `logged_in?`, and reroute them back to the login screen if they are not
+  - We would then make sure we only allow the user to edit and destroy the objects that _they_ created
+- After the user does an action we would reset the `session_token` as an added layer of security
+  - We would also set a flash to display the status of the action (i.e., success, or failure)
+- If the user were to log out and log back in we would call `#reset_session_token` to reattach their session token with the one we have saved on our db
+  - Part of them logging back in will be checking their password username association
+	- Its best practice to not give any indication that a username is correct if they give you an incorrect password  
+The `ApplicationController#current_user` method should be set up to only call the query to find the user the first time the method is called, this can be done easily with a lazy initialize:
+```ruby
+def current_user
+  return nil unless session[:session_token]
+  @current_user ||= User.find_by(session_token: session[:session_token])
+end
