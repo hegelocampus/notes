@@ -101,3 +101,6 @@ end
   - And why were you trying to go there?
 - Parameters issues are very common, the params will be shown in the rails server logs
 
+## Afternoon mini-lecture: Cat rental validation
+- We're going to have to check that there is no overlap between the rental periods of the same cat
+  - You have to do this by comparing the start of the rental to the end of another rental, one rental must have an ending time before the start 
