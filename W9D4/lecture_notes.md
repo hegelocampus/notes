@@ -10,7 +10,7 @@
 - When rails puts together the SQL query to insert the password into the db, the BCrypt::Password is translated into a string
 - We need to make sure that we write a `#password=(new_pass)` method to translate the input into a hash so that we can either store it in an encrypted form
 ```ruby
-def self.find_bycredentials(email, password)
+def self.find_by_credentials(email, password)
   user = User.find_by(email: email) # could be a user, could be nil
   return nil unless user && user.is_password?(password)
   user # return user if the email and password matches a user
@@ -21,12 +21,25 @@ def is_password?(password)
   bcrypt_password.is_password?(password) # Checks to see if the input matches the hashed password
 end
 ```
-You will be expected to do basic user auth on the assessment
-FeGrip (iron grip) to remember the user model  
+***You will be expected to do basic user auth on the assessment***  
+Use FeGrip (iron grip) to remember the user model  
 The capital letters line up with the class methods
-- `self.find_by_credentials`
-- `self.generate_session_token`
-
+```ruby
+F: self.find_by_credentials
+   # Returns the user model that matches the username/password combo (or email, etc.)
+e: ensure_session_token
+   # If a session token has not been created, generates a new one and sets the model's attribute
+   # This is useful for creating a session token for a new user since they will not have one stored in the database yet
+G: self.generate_session_token
+   # Returns a urlsafe_base64 string from the SecureRandom class
+r: reset_session_token!
+   # Generates a new session token, persists the new token to the database, and returns the new token
+   # (We return so that we can easily put the new token in our cookies)
+i: is_password?
+   # Compares a plaintext password to the password_digest stored in our database (through BCrypt)
+p: password=
+   # Sets our model password attribute as well as creating the password_digest (through BCrypt)
+```
 ## Auth Intro, Log In on Signup, & `#current_user`
 - It is good practice to put `#current_user` in the `ApplicationController` with `helper_method :current_user`
   - This exposes the method to the controllers and the views
@@ -55,7 +68,7 @@ def create
   if user
     session[:session_token] = user.reset_session_token
     flash[:success] = "Logged in succesfully. Welcome back!"
-    redirect_to bleast_url
+    redirect_to bleats_url
   else
     flash[:error] = "Wrong email/password combo"
     render :new, status: 401 ## This is the unauthorized status
@@ -78,16 +91,16 @@ end
 - This requires a `before_action`
 ```ruby
 class BleatsController < ApplicationController
-  before_action :ensure_user_logged_id, only: [:create, :new, :edit, :update, :destroy] #Only users who are logged in can create a bleat
+  before_action :ensure_user_logged_in, only: [:create, :new, :edit, :update, :destroy] #Only users who are logged in can create a bleat
   # etc..
 end
 ```
 - Because we will probably be using this in a bunch of different controllers we should define this in the `ApplicationController`
 ```ruby
 class ApplicationController < ActionController::Base
-  def ensure_user_logged_id
-    unless logged_id?
-	  flash[:error] = "Must be logged in to perform that action"
+  def ensure_user_logged_in
+    unless logged_in?
+      flash[:error] = "Must be logged in to perform that action"
 	  redirect_to new_session_url
 	end
   end
