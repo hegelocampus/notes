@@ -21,7 +21,7 @@ after_initialize :ensure_session_token
 #### Methods:
 ```ruby
 FeGrip (Iron Grip)
-F: self.find_by_credentials 
+F: self.find_by_credentials
    # Returns the user model that matches the username/password combo (or email, etc.)
 e: ensure_session_token
    # If a session token has not been created, generates a new one and sets the model's attribute

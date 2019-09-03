@@ -17,8 +17,8 @@ def self.find_by_credentials(email, password)
 end
 
 def is_password?(password)
-  bcrypt_password = BCrypt::Password.new(self.password_digest) # Digests password
-  bcrypt_password.is_password?(password) # Checks to see if the input matches the hashed password
+  bcrypt_password = BCrypt::Password.new(self.password_digest) # Turns password_digest back into BCrypt object
+  bcrypt_password.is_password?(password) # Checks to see if the input matches the hashed password using BCrypt::Password#is_password?
 end
 ```
 ***You will be expected to do basic user auth on the assessment***  
@@ -61,7 +61,7 @@ The double bang here is coercing a possibly nil value into a boolean
 ```ruby
 def create
   user = User.find_by_credentials(
-    params[:emails],
+    params[:email],
     params[:password]
   )
 
