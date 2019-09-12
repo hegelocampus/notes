@@ -1,0 +1,49 @@
+body {
+  font-family: 'Roboto';
+}
+
+h1 {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+td:first-child {
+  max-width: 160px;
+}
+
+tr:nth-child(odd) {
+  background-color: #eee;
+}
+
+th {
+  background-color: white;
+}
+
+code, .code {
+  font-family: monospace;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+  padding: 2px 5px;
+  font-size: 14px;
+}
+
+.code {
+  display: inline-block;
+}
+
+.tab {
+  padding-left: 1em;
+}
+
+.tab2 {
+  padding-left: 2em;
+}
