@@ -1,0 +1,52 @@
+# Week 13 Day 1
+## React
+- React is a lot faster than vanilla JS because it allows for changes to be made without requiring a bunch of small changes
+  - i.e., it repaints everything that needs to be changed all at the same time, within a batch
+### Creating a new react project
+- Webpack config: 
+  - You should add `resolve: { extensions: ['.js', '.jsx', '*'] }` and a bunch of module info
+- `package.json` config:
+  - You will have to declare the main JS file here
+- You will have to import the `ReactDOM from 'react-dom'` and `React from 'react'` into the `entry.js`
+- The entry will add an event listener and within that you can render anything you want using `ReactDOM.render(foo, root)`
+- Babel translates all the weird jsx syntax into plain javascript
+e.g., 
+```javascript
+// ./entry.jsx
+import ReactDOM from 'react-dom';
+import React from 'react';
+import App from './app';
+
+document.addEventListener"DOM ContentLoaded", function () {
+  const root = document.getElemntById("root");
+
+  //const article = React.createElement(
+  //  "article",
+  //  null, //This is a prop
+  //  [
+  //    React.createElemnt("p", null, ["Hello from the first paragraph"])
+  //  ]
+  //)
+  //// This can be translated into jsx
+  //const article = <article>
+  //  <p>Hello from the first paragraph</p>
+  //</article>
+
+  // `name="Batman"` is functioning as the prop declaration here
+  ReactDOM.render(<App name="Batman"/>, root);
+  // You can also do the following to allow for more dynamic naming
+  ReactDOM.render(<App name={ name }/>, root);
+}
+
+// ./app.jsx
+import React from 'react';
+
+const App = (props) => {
+  return <section>
+    <h1>Hello, { props.name }</h1>
+};
+export default App;
+```
+Don't do any vanilla js DOM manipulation alongside react because those changes may not render
+## Props
+- don't set the props themselves to be dynamically changeable because react uses the props to determine when to render, so changing prop to be a different prop will take away reacts ability to determine if the content of the page should change
