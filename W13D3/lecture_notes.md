@@ -28,3 +28,10 @@ const rootReducer = (state = {}, action) => {
 	- `mapStateToProps`: returns the desired relationship between the state value by connecting it to the props key
 	- `mapDispatchToProps`
   - This is essentially just merging the state and dispatch with the props, it really isn't as complicated as they're making it sound
+- The component's state is different from the global redux state
+  - Both these states coexist
+  - The global redux state can be accessed by any component in the app
+	- This really means any component, no matter how deeply nested
+  - The local component's state is always local
+  - It'd be good to get in the habit of explicitly calling these **'redux state'** and **'component state'**, rather than just 'state'
+- You need to use actions to manipulate the store state, you can't use `setState` on the store
