@@ -1,4 +1,4 @@
-#Week 13 Day 3: Lecture notes
+# Week 13 Day 3: Lecture notes
 ## Redux
 - An action is just an object with an attribute of type
 ### Reducers
