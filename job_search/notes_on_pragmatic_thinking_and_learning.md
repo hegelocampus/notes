@@ -35,5 +35,4 @@
   - A change in perception where you take into account context in order to focus on the relevant bits
   - A change from being a detached observer to an involved part of the system
 	- You are part of the problem and you are part of the solution
-- 
 
