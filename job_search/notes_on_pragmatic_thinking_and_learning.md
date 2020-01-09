@@ -93,4 +93,38 @@
 - You can only improve if you believe you can
 ### Next actions
 - Make a conscious effort to learn something new primarily by synthesis, instead of analysis
+## Get in your Right Mind
+- Add sensory experience to engage more of your brain (i.e., fidget)
+  - The more senses you involve the better
+  - Things you can do:
+	- Write it down
+	- Draw a picture (like a metaphor)
+	- Describe it verbally
+	- Talk about it with people
+	- Act out the roles involved
+  - Your brain is built to adapt to changing environments, so change your environment regularly to feed your brain
+### Engage your R-mode brain
+- Often when thinking about a thing your L-mode brain responds first and gives you a simple representation of what you want, a symbol
+- Oftentimes you don't want the trite symbol; you want to perceive the real thing, this takes engaging the R-mode
+- Try to create a sensory experience first that you can use to contextualize L-mode logical reasoning
+**Lead with R-mode; follow with L-mode**
+- Start with analogic processes for connections and theories, and then use the analytic processes to validate your thinking
+  - When problem solving, learn to be comfortable with uncertainty
+  - When creating be comfortable with the non-sequitur and the absurd
+  - When learning try to just get acquainted with the information on your first run-through
+- **Use metaphor as the meeting place between L-mode and R-mode**
+  - Any software system should be able to be guided by an appropriate metaphor
+	- A sufficiently rich metaphor can help guide the design of a system and help answer questions that come up during development
+- **Cultivate humor to build stronger metaphors**
+### Harvesting with Image Streaming
+- _Image Streaming_ is a technique designed to help harvest R-mode imagery
+  - First, pose a problem to yourself, or ask yourself a question
+  - Then close your eyes and get comfortable for about 10 minutes
+  - For each image that crosses your mind, do the following:
+	- Look at the image, try to see all the details you can
+	- Describe it out loud, really use your voice
+	- Imagine the images using all five senses
+	- Use present tense, even if the image is fleeting
+### Harvesting with Free-Form Journaling
+- 
 
