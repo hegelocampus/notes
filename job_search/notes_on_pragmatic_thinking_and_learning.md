@@ -126,5 +126,26 @@
 	- Imagine the images using all five senses
 	- Use present tense, even if the image is fleeting
 ### Harvesting with Free-Form Journaling
-- 
-
+- Blogging may be a good habit to get into
+  - Although pen and paper is probably better because online blogging adds many technical distractions
+#### Morning Pages Technique
+Here's how you do it:
+  - Write your morning pages _first thing_ in the morning, before coffee, before anything else
+  - Write at least three pages, long hand
+  - Do not censor what you write, just write whatever you're thinking
+  - Do not skip a day
+- This works because you're getting an unguarded brain dump
+### Harvesting by Walking
+- Walk a labyrinth path - A labyrinth offers only a single path - there are no decisions to be made
+  - This gives your L-mode something to do while freeing up the R-mode
+- When you go on your "thinking walk" don't actually do any _thinking,_ you want to let your subconscious do the work
+- **Step away from the keyboard to solve hard problems**
+## Debug Your Mind
+- We make decisions and solve problems based on faulty memory and our emotional state at the time
+There are four main categories of problems:
+- _Cognitive biases_
+- _Generational affinity_
+- _Personality tendencies_
+- _Hardware bugs_
+### Cognitive biases
+- There will always be elements that are just plain uncertain, _and that's not a bad thing_
