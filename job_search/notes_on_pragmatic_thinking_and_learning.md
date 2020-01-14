@@ -202,4 +202,51 @@ When you feel any of these try to breathe and count to 10 before you decide on a
 	- How about a colleague with a very different viewpoint from your own?
 If you think you've defined something, try to also define its opposite.
 - To avoid the blindingly rosy glow of wishful thinking, remember that every decision is a trade-off.
+## Learn Deliberately
+- Sheep dip learning doesn't work
+  - Learning isn't done _to_ you; its something _you_ do
+  - Mastering knowledge alone, without experience, is meaningless
+  - A random approach, without goals and feedback, tends to give random results
+- What is actually relevant to performance is:
+  - The model you build in your mind
+  - The questions you ask to build that model
+  - Your experiences and practices that you built along the way
+- A classroom experience can only get you started in the right direction
+- **You need continuing goals, feedback, and intention**
+### Target SMART Objectives
+- To get where you want to be you need to set goals.
+- But the goals need to be well defined.
+- SMART objectives:
+  - Specific
+	- Narrow your objective down to something concrete.
+  - Measurable
+	- How do you know when you're done?.
+	- Goes hand-in-hand with being specific.
+	- Take small bites and measure steady, incremental progress.
+	- You don't have to see your destination, just your next step.
+  - Achievable
+	- Take your personal context into account when picking your goals.
+	- An unachievable goal isn't a target, its a soul-sucking frustration.
+	- **Make each next objective attainable from where you are _now_**
+  - Relevant
+	- It needs to _matter_ and be something that you have control over.
+  - Time-boxed
+	- You need to give yourself a deadline.
+	- Without deadlines, a goal will languish and be perpetually pushed aside by the more pressing exigencies of the day.
+	- Give yourself small and frequent milestones so that you'll be more motivated to meet them.
+### Objective in a Larger Context
+- Goals need to make sense in context
+- Consider the impact your goals will have within a wider context
+Three most important goals for me:
+- Get a Software Engineering job at Google
+  - Get through all LeetCode Google prep material by the end of January
+  - Read first 100 pages of Algorithm Design Manual by the end of January
+  - Find a mentor at Google to help me learn
+- Translate Acorn.js to Dart
+  - Write basic tests by 20-01-20
+  - Adapt Acorn `index.js` to `main.dart` by 20-01-25
+- Learn Flutter
+  - Setup environment by 20-01-20
+  - Make basic to-do app by the end of January
+### Create a Pragmatic Investment Plan
 
