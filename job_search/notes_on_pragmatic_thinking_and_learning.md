@@ -149,3 +149,57 @@ There are four main categories of problems:
 - _Hardware bugs_
 ### Cognitive biases
 - There will always be elements that are just plain uncertain, _and that's not a bad thing_
+- Memory isn't trustworthy **trust ink over memory; every mental read is a write**
+  - You need an external tool to truth check your memory
+### Generational Affinity
+- Your biases are likely very common to the ones your peers have
+- The biases that drive other generations are likely different than the ones that drive you and your peers
+#### The Four Archetypes
+- Nomad: Liberty, survival, honor
+  - X-gen
+- Prophet: Vision, values
+  - Boomer
+- Artist: Pluralism, expertise, due process
+  - Silent, Homeland
+- Hero: Community, affluence
+  - G.I., Millennial
+### Hardware Bugs
+#### Lizard Logic
+- Fight, flight, or fright
+  - Response is to become fully aroused immediately.
+  - If the situation is really bad you just freeze with fear
+- Get it now
+  - Everything is immediate and automatic. Don't think or plan, just follow impulses.
+  - Focus on what's most exciting rather than what's most important.
+- Be dominant
+  - Be aggressive and stomp on others to assert your position.
+  - The rules apply to everyone but you.
+- Defend the territory
+  - Never share info, tips, tricks, or office space.
+  - If someone does something without you, cry foul and demand to know why.
+- If it hurts, hiss
+  - Don't bother to fix the problem, spend all your time fixing the blame on someone else instead.
+- Like me == good; not like me == bad
+  - Your side is always good, any other side is inherently evil.
+  - Explain this to your teammates often.
+**Thinking takes time; these actions and reactions work more quickly than that, and with less effort.**  
+When you feel any of these try to breathe and count to 10 before you decide on a response. Let the lizard reaction pass, and allow the neocortex to process the event.
+### Chapter conclusion
+- **Try to lead with intuition, but follow up with provable, linear feedback - Trust Intuition, but verify.**
+- Do what you need to do to prove that your idea is a good one, because your intuition may have been wrong.
+#### Testing Yourself
+- To get a bigger picture perspective and test your understanding and mental model, ask yourself the following:
+  - How do you know?
+  - Says who?
+  - How specifically?
+  - How does what I'm doing cause you to...?
+  - Compared to what or whom?
+  - Does it always happen? Can you think of an exception?
+  - What would happen if you did (or didn't)?
+  - What stops you from...?
+  - Is there anything you can actually measure?
+  - What happens when you talk this over with a colleague?
+	- How about a colleague with a very different viewpoint from your own?
+If you think you've defined something, try to also define its opposite.
+- To avoid the blindingly rosy glow of wishful thinking, remember that every decision is a trade-off.
+
