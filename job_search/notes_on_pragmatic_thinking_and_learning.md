@@ -249,4 +249,73 @@ Three most important goals for me:
   - Setup environment by 20-01-20
   - Make basic to-do app by the end of January
 ### Create a Pragmatic Investment Plan
-
+- Have a concrete plan
+  - Devise levels of goals over time, e.g., now, next year, five years from now
+  - Planning is far more important than the plan
+- Diversify
+  - Make a conscious effort to diversify your attention
+  - Take into account the return on your investment for your learning. Skills everyone has will be less impressive than more unique skills, but unique skills have a greater risk
+- Make an active investment
+  - Deliberately stop and reevaluate your portfolio of skills and what you can do to better yourself
+- Make a regular investment
+  - Make sure you regularly try to learn a particular skill, you may not always have a productive learning session but in the long term your irregularities will smooth out and you will learn if you set yourself up to.
+  - Make a commitment to invest a minimum amount of time on a regular basis
+### Use your primary leaning mode
+General Types:
+  - Visual learners: need to see the material *I'm pretty sure I'm a visual learner
+  - Auditory learners: have to hear the material.
+  - Kinesthetic learner: learn my moving and touching *With perhaps some kinesthetic tendencies
+- These differences aren't necessarily cast in stone, you may be able to change the effectiveness of different types of learning.
+- Characteristics of an adult learner:
+  - Motivated to learn if learning will serve their interests & needs.
+  - Units studied should be real-life situations.
+  - Analysis of the learner's experience is the core method employed.
+  - Need self-direction.
+  - Instructors must allow for differences in style, time, place, and pace.
+### Work Together, Study Together
+- Study groups are great.
+- A reading group is a great place to start.
+### Use Enhanced Learning Techniques
+#### Read Deliberately with SQ3R
+Process:
+  - Survey: Scan the table of contents and chapter summaries for an overview.
+  - Question: Note any questions you have.
+  - Read: Read it in its entirety.
+  - Recite: Summarize, take notes, and put in your own words.
+  - Review: Reread, expand notes, and discuss with colleagues.
+- Survey:
+  - Look over all the hight-level landmarks left by the author.
+  - Get a good overview of the book without diving in to detail.
+- Question:
+  - Write down any questions you want answered.
+	- How does this tech solve this problem?
+	- Will I learn how to do this one thing?
+  - Rephrase the chapter and section heads as questions.
+- Read:
+  - Actually read the book.
+  - Carry it with you so you can read in any spare time: While waiting for an appointment or on the bus or whenever.
+  - Slow down on the difficult parts and reread sections as needed.
+- Recite:
+  - As you go through the book recite recall and rephrase (in your own words) the most important bits.
+  - Try to synthesize the information; draw connections to other things you know and make analogies to other things.
+  - Organic mind-maps of the material are very useful.
+- Review:
+  - Reread portions as needed and expand your notes as you start to synthesize what you read
+#### Mind maps:
+- Take advantage of the way your eye scans and reads a piece of paper.
+- Spatial cuing conveys information in a way that linear words can't.
+- Once you've completed your mental map re-create it on a fresh piece of paper.
+- Nonspecific, non-goal-oriented "playing" with information is a great  way to gain insights and see hidden relationships.
+- Graphic enhancements are not random, they help coax additional thinking and meaning from you.
+- Most effective when you're not exactly sure what you'll find
+#### Harness the Real Power of Documenting
+- If documentation doesn't provide value, don't do it: **writing documentation for documentation's sake is a waste of time**
+- This sort of documentation generally has no audience
+- Use a pragmatic filter to make sure the investment in creating any documentation is really worth the effort.
+- **Documenting is more important that documentation**
+### Learn By Teaching
+- Describe the problem to a co-worker
+  - Explain it to a rubber duck
+- Explain the problem/subject to someone outside of your area of expertise
+- **See it. Do it. Teach it.**
+## Gain Experience
