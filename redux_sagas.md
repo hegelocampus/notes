@@ -1,6 +1,6 @@
 # Redux Sagas
 - Redux Sagas are an alternative to Redux Thunks
-- Process to preform an async action (e.g., an AJAX request):
+- How to preform an async action using Sagas (e.g., an AJAX request):
   - Dispatch an event with the desired `<String>action` along with the `<Object>data` needed
   - That event is then intercepted by the Saga middleware which then triggers the designated `Function*` Saga function
 - Analogy:
