@@ -308,7 +308,7 @@ Process:
 - Nonspecific, non-goal-oriented "playing" with information is a great  way to gain insights and see hidden relationships.
 - Graphic enhancements are not random, they help coax additional thinking and meaning from you.
 - Most effective when you're not exactly sure what you'll find
-#### Harness the Real Power of Documenting
+
 - If documentation doesn't provide value, don't do it: **writing documentation for documentation's sake is a waste of time**
 - This sort of documentation generally has no audience
 - Use a pragmatic filter to make sure the investment in creating any documentation is really worth the effort.
@@ -319,3 +319,89 @@ Process:
 - Explain the problem/subject to someone outside of your area of expertise
 - **See it. Do it. Teach it.**
 ## Gain Experience
+- Questions:
+  - How do you gain experience effectively?
+  - What kind of experience helps you learn?
+  - How can playing help me learn more effectively?
+  - Does an expert gain experience any differently than a beginner?
+### Notes
+- Trying too hard can be just as bad (if not worse) than slogging though the same old motions
+- How to gain experience effectively:
+  - Build to learn, not learn to build.
+  - Fail efficiently with better feedback.
+  - Groove your neural pathways for success.
+#### Play in Order to Learn
+- Exploring or "playing with," the material should come before studying facts.
+- _Constructivism:_ We build to learn, not learn to build
+  - Real learning comes from experience and cognition
+- Structure learning such that you can build on top of existing experience
+- Effective play is challenging enough to maintain interest and progress at solving the problem domain
+- Flash cards are one way to "gamify" the material
+- The idea is to engage as much of your being in the learning process as possible:
+  - Verbal
+  - Visual
+  - Musical
+  - Numerical
+  - Gross-motor body movement
+  - Fine-motor finger movement
+  - And so on
+#### Leverage Existing Knowledge
+- When engaging a problem:
+  - Ask yourself these questions:
+	- What are the unknown aspects?
+	- What _do_ you know? What data do you have?
+	- What constraints and what rules apply?
+  - Then make a plan, execute it, and review the results:
+	- Break it down into smaller, more manageable parts.
+	- Compare this problem to a similar problem you have faced before.
+	- Draw a picture of the problem.
+	- Solve a similar problem and then try to solve this problem again; drop some of the constraints or use just a subset of the data.
+	- Try restating the problem.
+	- Try working backwards from the unknown towards the data.
+- There is a downside to looking for similarities:
+  - Be careful not to get stuck in the trap of only ever performing the new thing in the same way you would do the old thing.
+  - You need to unlearn just as much as you need to learn.
+  - **Learn from similarities; unlearn from differences**
+  - Another danger is that the problem you thought was similar may be completely wrong
+#### Embed Failing in Practice
+- Debugging is a part of life -- not just software.
+- "Errors benefit us because they lead us to study what happened, to understand what went wrong, and, through understanding, to fix it." - Papert
+- Failure is critical to success
+  - But the failure cannot be random, it must be well-managed failure. These are created from a good learning environment where feedback and retroflection are encouraged
+- Not all mistakes are things you do; some are things you didn't do but should have.
+  - "I don't know" is a fine answer, but don't let it end there. Be curious and look up things you bump into that you don't know about
+- It's not important to get it right the first time; **it's important to get it right the last time.**
+- In order to learn you need the following:
+  - To be able to explore unfamiliar territory relatively free from risk. Don't hold yourself back from trying something new.
+  - You need to be able to explore even if you don't know where you're going.
+  - You need to be free to invert, be comfortable with the things you create not working out.
+  - You need to be able to apply what you've learned in your day-to-day practice.
+- **Explore, invent, and apply in your environment -- safely**
+##### How to create an exploratory environment
+- You need the following:
+  - Freedom to experiment
+	- Few problems have a single, best solution.
+	- When you have multiple possible solutions, try to at least prototype each way.
+	- Make sure the experimentation doesn't adversely affect anyone else on the team.
+  - Ability to backtrack to a stable state
+	- **Use source control**
+  - Reproduce any work product as of any time
+	- Just going back to a previous version of the source code isn't quite enough, you need to actually be able to run the code.
+	- Can you run a version of the program from last year or last month?
+  - Ability to demonstrate progress
+	- You can't get anywhere without feedback.
+	- Did your experiment work better than the alternatives? How do you know?
+	- Is the project progressing?
+	- You need to be able to demonstrate fine-grained progress to yourself as well as to others.
+- This is all pretty simple to do in software development, its just the **Starter Kit:**
+  - Version Control:
+	- Stores every version of every file you work with.
+	- Git is great for helping you experiment.
+  - Unit testing:
+	- Provides a fine-grained set of regression tests. You can use the results of these tests to compare alternatives.
+	- These allow you to have a solid indication of progress.
+  - Project automation:
+	- Ties it all together and ensures that the trivial mechanics are taken care of in a reliable, repeatable manner.
+- The Starter Kit gives you the advantage of freedom to experiment, with comparatively little risk.
+#### Learn About the Inner Game
+
