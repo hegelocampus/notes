@@ -404,4 +404,31 @@ Process:
 	- Ties it all together and ensures that the trivial mechanics are taken care of in a reliable, repeatable manner.
 - The Starter Kit gives you the advantage of freedom to experiment, with comparatively little risk.
 #### Learn About the Inner Game
-
+- **There are failures that are good for us and there are failures that aren't good for us**
+  - Bad failure doesn't make you learn, it keeps you from learning or shuts down learning
+- To avoid bad failure you have to be aware of the _inner_ game.
+  - That is you need to be aware that if you give your mind feedback it will adapt and produce a better result over time.
+  - Trying to learn through words is much less effective
+  - ***Situational feedback*** is the core principle behind learning using the inner game technique
+  - Instead of trying to take in a stream of instructions, try to learn awareness and how to use that awareness to correct your performance
+- **Don't focus on correcting individual details, just be aware**
+  - Accept _what is_ as a first step and then just be aware of it, don't judge, don't rush in with a solution, don't criticize
+  - Don't try to get it right, but notice when it is wrong. Then act to correct it.
+#### How this applies to programming
+- Make sure you're fully aware of "what is" before acting to correct it
+  - Make sure you evaluate the entire situation before you try to fix a bug
+  - Be _fully_ aware of how the system is behaving before you decide what part of that is "wrong" before choosing how you'll tackle the situation
+  - **Don't just do something; stand there.**
+- When debugging:
+  - Take a deep breath and take your hands off your keyboard.
+  - Read the bug message.
+  - Close your eyes and imagine where the source of the error resides
+	- What code is around it? What is the context?
+	- Open your eyes and check to make sure it actually looks like this.
+  - Close your eyes and imagine a passing test.
+	- What does the test code look like?
+	- Open your eyes and check to make sure it actually looks like this.
+  - Before you hit test all, imagine what will happen when you run that test.
+- The idea is to raise awareness; explicitly contrasting your imagined version of the code with the real code helps to accomplish that.
+- You're least creative when you feel time pressure and you're less productive for the following two days
+#### Grant Permission to Fail
