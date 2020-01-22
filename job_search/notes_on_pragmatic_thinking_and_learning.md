@@ -432,3 +432,82 @@ Process:
 - The idea is to raise awareness; explicitly contrasting your imagined version of the code with the real code helps to accomplish that.
 - You're least creative when you feel time pressure and you're less productive for the following two days
 #### Grant Permission to Fail
+- _Permission to fail_ leads to success.
+- You don't actually need to make errors, as long as you're in an environment where you can take risks that could lead to errors.
+- When you give yourself permission to fail you can allow yourself to just observe.
+- Create "failure permitted" zones to work and learn your best.
+  - Zones where the cost of failure is near zero.
+  - E.g., whiteboarding ideas or free-for-all brainstorming.
+- If failure is costly then there will be no creativity or learning.
+#### Imagination Overrides Senses
+- What if you can't create an environment where failure has no adverse affects?
+- Perception is based on prediction. Prediction is based on context and past experience.
+- **Imagining success is provably effective in achieving it**
+  - You can improve your performance by imagining that you've already done the task successfully.
+- If you surround yourself by people who are better than you at whatever task you are trying to learn, you will start to perform at a higher level.
+- You should pretend you are the expert in order to become one.
+- You can imagine writing code in your head or pretend to have that requirements conversation.
+  - By continuing this practice even when you aren't actually doing the task, the brain gets _grooved._ It becomes used to the experience of doing things correctly so that when the time comes to do it in the field, success comes naturally.
+- Until you are at the level of expert you just need to fake it until you make it.
+  - Don't just pretend to be an expert though, actually play the role of an expert.
+  - Add whatever scaffolding necessary to provide an approximation of the experience of an expert.
+	- What kind of scaffolding do you need to have the experience of an expert?
+  - You can also do the reverse and add some artificial constraints so that doing the real thing will feel easier (e.g., try to write the code in C++ or don't let yourself use built in objects).
+- You can learn from imagined experiences just as effectively as real experiences
+## Manage Focus
+Questions:
+- How do you focus most effectively?
+- How do you manage interruptions?
+- What role does context play in focus?
+### Notes
+- You need to focus on the information you want, filter the information you don't, and have the right information available without missing subtle clues that make the difference.
+- Focus on three things:
+  - Increasing focus and attention.
+  - Managing your knowledge.
+  - Optimizing your current context.
+- _Attention_ is the act of focusing in on an area of interest.
+  - Is narrow. You can only be attentive of a few things at any given point in time, if that.
+- _Information_ is raw data in a given context.
+  - Not actually usable until its processed.
+- _Knowledge_ imparts meaning to that information.
+  - You apply your time, attention and skill to information to produce knowledge.
+- _Context_ is the set of stuff you are focused on at this moment.
+  - The "working set" of information that you are dealing with at a given point in time.
+#### Increase Focus and Attention
+- Humans are remarkably bad at noticing important details if their attention is focused somewhere else.
+- When you overload your bandwidth, you'll miss things, you won't learn, and you won't perform your work well.
+- If you want to get better at focusing your attention you need to practice meditation.
+  - Meditation will help you focus better 24x7.
+- The sort of meditation you want to learn is a sort of relaxed awareness where you can be aware of yourself and your environment without rendering judgment or making responses.
+  - This is known as _Vipassana meditation._
+  - Catch that moment of bare attention where you first notice something but do not give it any additional thought. Just let it go.
+- **Meditation Step by step**:
+  - Find a quiet spot, free from distraction.
+  - Set in a comfortable but alert posture. Maintain a straight spine, let your body hang off your spine as relaxed as you can be.
+  - Become aware of any tension you are holding in your body and let it drift away.
+  - Close your eyes, focus your awareness on your breath where it enters your body and where it exits.
+  - Be aware of the rhythm of your breath, the length and qualities of your inhale, the brief point before you exhale, then the qualities of your exhale, and finally the brief pause at the bottom of your breath.
+	- Don't try to change anything. Just notice it.
+  - Keep your mind focused on the breath. Don't use words to describe it. Don't verbalize the breath or any thought you have. Do not begin a conversation with yourself.
+  - Whenever your attention wanders off, just let those thought drift away and gently bring your focus back to the breath.
+	- Even if this happens often, the exercise of noticing that and bringing yourself back each time is helpful
+- After spending some time like this you may want to try deliberately controlling your breath.
+- **_Segmented breath_ approach**:
+  - Consider the breath to be made of air traveling in three distinct segments:
+	- The lower belly and abdomen.
+	- The chest and rib cage.
+	- The very upper chest and collar bones (but not into the throat).
+  - Exhale fully.
+  - On the inhale:
+	- Fill the lower belly first
+	- Pause slightly.
+	- Fill the chest.
+	- Pause slightly.
+	- Fill up to your collar bones, but not into the throat.
+	- Keep your throat open and jaw relaxed. Nothing should tense up.
+  - Pause slightly.
+  - Exhale fully.
+  - Pause slightly.
+  - Repeat.
+#### Defocus to Focus
+
