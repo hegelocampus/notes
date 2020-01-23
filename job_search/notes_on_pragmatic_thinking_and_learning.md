@@ -510,4 +510,29 @@ Questions:
   - Pause slightly.
   - Repeat.
 #### Defocus to Focus
+- Some problems yield only to a less conscious approach.
+- Creativity does not function on a time clock and does not generally yield results when pressured.
+- This approach only works if your subconscious has some data to work with
+- You need to allow your perception of the problem to marinate
+- **Rule of three**: If you can't think of three ways a plan can go wrong, or think of three different solutions to a problem, then you haven't thought enough.
+#### Manage Your Knowledge
+- You need to be ready to capture info anywhere, anytime. But once you've captured it you need to process it in some way.
+  - Organize it
+  - Develop it
+  - Coalesce disparate material
+  - Refine and split general ideas into more specific ones
+- A personal Wiki is a great tool to help you organize your thoughts
+  - Wikis are great ways to connect and organize your thoughts
+  - The more you try to work with and organize your thought the more you'll see connections between them
+#### Optimize Your Current Context
+- Context is the set of information that is currently loaded into your short-term memory related to the task at hand.
+- We aren't built to swap context easily and naturally.
+  - If something interrupts us, it's _really_ expensive to drag everything back in. This is called _context switching._
+- Multitasking is bad
+  - It can cost you 20 to 40 percent of your productivity.
+- If your current task is interrupted, it can take you an average of twenty minutes to get back into it.
+  - One way to try and avoid this is to try to more deliberately switch activities. E.g., dedicate an hour to debugging and then 30 minutes to responding to emails.
+- Set yourself up to avoid distractions
+  - Streamline your dev environment
+
 
