@@ -1,5 +1,4 @@
 # Notes on Pragmatic Thinking and Learning
-### 20-01-01
 ## Introduction
 - Everything is connected to everything else
   - Always consider the context of what you're dealing with
