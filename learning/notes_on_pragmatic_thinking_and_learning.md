@@ -533,5 +533,71 @@ Questions:
   - One way to try and avoid this is to try to more deliberately switch activities. E.g., dedicate an hour to debugging and then 30 minutes to responding to emails.
 - Set yourself up to avoid distractions
   - Streamline your dev environment
-
+#### Organizing tasks efficiently
+- _Scan the input queue only once_:
+  - Don't use the arrival box as a storage device, go through and sort new tasks into whatever piles are necessary.
+  - Don't waste time rescanning the same stuff over and over again.
+- _Process each pile of work in order_:
+  - Once you have your piles work them.
+  - Stay on task and avoid switching tasks until you fully complete the one at hand.
+  - Stay in the same pile to keep your momentum.
+- _Don't keep lists in your head_:
+  - Keep to-do lists and such somewhere physical.
+  - This will prevent you from wasting time trying to recreate your to-do list.
+#### Manage Interruptions Deliberately
+- Move distracting tasks into scheduled time-boxes, (e.g., checking email, networking).
+- For email:
+  - Turn off email notifications. Only check your email during the designated time frame.
+  - Bump up the polling interval to help reduce the constant stream of emails throughout the day.
+  - Note that you are setting the precedent for how fast the email conversation will be based on your own reply speed. **Send less email, and you'll receive less email.**
+	- The faster you reply, the faster you are expected to reply in the future.
+  - _Out of sight, out of mind._ Exit your email client when not in use.
+#### Context-Friendly Breaks
+- Best options:
+  - Doodle on a blank piece of paper.
+  - Go on a walk, but try to avoid conversation.
+- Try to raise the _physical_ cost of entering into your area of context
+  - Create a routine for starting work that requires you to physically set the context:
+	- E.g., start some music, turn on the lights
+	- Make sure you undo all those things when you're exiting the context, so the price of coming back remains the same.
+#### Save your Stack
+- **Prepare to be interrupted.**
+- When you know you're about to get interrupted make a quick note about what you are doing in order to help yourself get back on track when the distraction is over.
+- You can even leave the note in the thing your working on.
+  - For instance, if you're writing an email you can write a few words related to your current train of thought.
+#### Keep a Big Enough Context
+- Keep task-related items within close context, make them easily accessible
+- Organize your digital work-spaces based on context.
+#### How to Stay Sharp
+- **The most important thing is self-awareness.** Remember that you need to work deliberately at staying sharp.
+Most important things to take away:
+- Learn to quite your chattering L-mode.
+- Deliberately work with and add to thoughts in progress, even if they aren't "done" yet.
+- Be aware of just how expensive context switching can be, and avoid it in all its myriad forms.
+## Beyond Expertise
+- If you want to remember content you have to give your a brain a reason to care.
+How to manage effective change:
+- Start with a plan.
+  - Block out some time and fight for it.
+  - Keep track of how far you've come.
+- Inaction is the enemy, not error.
+  - The only danger lies in doing nothing at all.
+  - Allow yourself to make mistakes.
+- New habits take time.
+  - It takes at least 3 weeks to start to build habits.
+  - Give it time.
+- Belief is real.
+  - Your thoughts will physically alter the wiring in your brain.
+  - You have to believe that change is possible.
+- Take small, next steps.
+  - Start with the low-hanging fruit. Give yourself achievable goals.
+  - Only plan out your big goals when you have tangible steps to getting there.
+What to Do Tomorrow Morning
+- **Just start.** Seriously. Starting is the hardest part.
+### Beyond Expertise
+- The work thing you can do after becoming an expert is to act like one.
+- Remain curious and accept that there is always more to learn.
+- Your own judgment and views, instead of supporting you, can imprison you.
+- Approach learning without preconceived notions, prior judgment, or a fixed viewpoint.
+- Be conscious of how you react to new technology, ideas, or things you don't know about.
 
