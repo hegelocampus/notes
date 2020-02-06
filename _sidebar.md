@@ -52,5 +52,4 @@
 	* [Personal Pitch](/job_search/personal_pitch_notes)
 	* [Resume](/job_search/resume_notes)
 	* [Social Media](/job_search/social_media)
-	* [Negotiation](/job_search/negotiation)
 	* [HTML Trivia](/job_search/html_trivia)
