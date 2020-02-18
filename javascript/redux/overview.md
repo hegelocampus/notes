@@ -19,7 +19,7 @@ import { createStore } from `redux`;
 import reducer from './reducer.js';
 
 const store = createStore(reducer);
-```
+```  
 ## Updating the Store
 - Store updates can only be triggered by dispatching **actions**
 - The **action** defines the **type**
