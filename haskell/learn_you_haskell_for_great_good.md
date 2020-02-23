@@ -227,6 +227,32 @@ removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
 - These are used to write very general functions if you don't use any behaviors specific to any specific type.
 - Functions that have type variables are called **polymorphic functions**
 - Type variables are usually given the names of `a`, `b`, `c`, `d` ...
-##### Typeclasses
+#### Typeclasses
 - A typeclass is a sort of interface that defines some behavior.
 - If a type is a part of a typeclass, it supports and implements the behavior the typeclass describes.
+- These are **not like classes in OOP**
+- A **class constraint** is denoted by a `=>` symbol
+  - For example `:t (==)` returns this type: `(Eq a) => a -> a -> Bool`, in this type `(Eq a) =>` is declaring that the variable `a` must be in the `Eq` class. This particular typeclass provides an interface for testing equality
+##### Common typeclasses
+- `Eq` is used for types that support equality testing. If there's an `Eq` class constraint that means it uses `==` or `/=` somewhere in its definition.
+- `Ord` is for types that have an ordering. `Ord` membership requires `Eq` membership
+- `Show` members can be presented as strings. The most common function for this typeclass is `show` which takes a value and presents it as a string.
+- `Read` is kind of the opposite of `Show`. The `read` function takes a string and returns a type which is a member of `Read`
+  - If you want to use read on a object that can be converted into multiple types you can declare the type as follows: 
+```haskell
+ghci> read "5" :: Int
+5
+ghci> read "5" :: Float
+5.0
+ghci> read "[1,2,3,4]" :: [Int]  
+[1,2,3,4]
+```
+You shouldn't need to do this for most expressions but if the compiler can't figure our what the type of something is you may need to do this.
+- `Enum` members are sequentially ordered types
+- `Bounded` members have an upper and a lower bound. `Int`, `Char`, `Bool`
+- `Num` is a numeric typeclass. Its members can act like numbers. `Int`, `Integer`, `Float`, `Double`
+- `Integral` is also a numeric typeclass. `Num` includes all numbers, including real numbers and integral numbers, `Integral` only includes integral numbers. `Int` and `Integer`
+- `Floating` includes only floating point numbers. `Float` and `Double`
+A very useful function for dealing with numbers is `fromIntegral`. It takes an integral number and turns it into a more general number.
+## Syntax in Functions
+
