@@ -143,3 +143,23 @@ ghci> [x*2 | x <- [1..10], x*2 >= 12]
 [12,14,16,18,20]
 ```
 - Weeding out lists by predicates is also called **filtering**
+Replace each odd number greater than 10 with `"BANG!"` and each odd number less than 10 with `"BOOM!"`, and if a number isn't odd we throw it out of the list.  
+For convience we'll put the comprehension inside a function:
+```haskell
+boomBangs xs = [ if x < 10 then "BOOM!" else "BANG!" | x <- xs, odd x]
+ghci> boomBangs [7..13]
+["BOOM!","BOOM!","BANG!","BANG!"]
+```
+You can even pass in several predicates. For example for all numbers from 10 to 20 that are not 13, 15 or 19:
+```haskell
+ghci> [ x | x <- [10..20], x /= 13, x /= 15, x /= 19]  
+[10,11,12,14,16,17,18,20]  
+```
+- **An element must satisfy all the predicates to be included in the list**
+- To get all the possible combinations of the items in two lists you can do the following:
+```haskell
+ghci> [ x*y | x <- [2,5,10], y <- [8,10,11]]  
+[16,20,22,40,50,55,80,100,110]   
+```
+#### Tuples
+
