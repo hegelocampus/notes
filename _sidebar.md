@@ -26,6 +26,8 @@
 	  * [Reducers](/javascript/redux/reducers_and_react)
 	  * [Thunks](/javascript/redux/thunks_and_ajax)
 	  * [Sagas](/javascript/redux/redux_sagas.md)
+  * Haskell
+  	* [Learn You Haskell for Great Good](/haskell/learn_you_haskell_for_great_good)
   * Ruby
 	* [Instance Variables](/ruby/instance_variables)
 	* [Metaprogramming and Reflection](/ruby/metaprogramming_and_reflection)
