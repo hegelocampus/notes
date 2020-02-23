@@ -161,5 +161,72 @@ ghci> [ x | x <- [10..20], x /= 13, x /= 15, x /= 19]
 ghci> [ x*y | x <- [2,5,10], y <- [8,10,11]]  
 [16,20,22,40,50,55,80,100,110]   
 ```
+- You can even use this to count occurrences, this counts the number of odd elements
+```haskell
+ghci> sum [ 1 | x <- [1,2,3,4,5], odd x]]
+3
+```
 #### Tuples
-
+```haskell
+let tuple = (8, 11, 5)
+```
+- Tuples are used when you know exactly how many values you want to combine and its type depends on how many components it has and the types of the components.
+- Tuples **don't have to be homogeneous** and can contain several types
+- A tuple of size two (called a pair) is its own type so you can't have a list contain a couple of pairs and a triple (a tuple of size three).
+- Because of this, a list like this would result in an error:
+```haskell
+[(1, 2), (8, 11, 5), (4, 5)]
+```
+- You also can't create a list of Tuples of different types:
+```haskell
+ghci> [(1,2),("One",2)]
+error
+```
+- A good example of a place where a tuple makes sense is to represent a person's name and age: `("Christopher", "Walken", 55)`
+- You should only use Tuples when you know in advance how many components some piece of data should have. Tuples are much more rigid than lists. You cannot write a general function to append an element to a tuple, you'd have to write a function for appending to a pair, to a triple, and for a 4-tuple, and so on.
+- You can compare two tuples of the same size but not of different size. They are compared in the same way as lists, with each element being compared in order
+- Useful pair tuple functions
+  - `fst` takes a pair and returns its first component
+  - `snd` takes a pair and returns its second component
+  - **Note these only work on pairs**
+- You can use `zip` to take two lists and zip them together in one list joining the matching elements into pairs
+  - You can even zip lists of different lengths, the longer list will simply get cut off to match the length of the shorter one
+```haskell
+ghci> zip [1 .. 5] ["one", "two", "three", "four", "five"]  
+[(1,"one"),(2,"two"),(3,"three"),(4,"four"),(5,"five")]  
+```
+### Types and Typeclasses
+- In GHCI you can use `:t` to examine the type of the expression following it.
+For example:
+```haskell
+ghci> :t 4 == 5  
+4 == 5 :: Bool 
+```
+- Explicit types are always denoted by the first letter being capitalized, e.g., `Char`, `Bool`, `False`
+- **Functions also have types**
+  - When writing functions you can choose to give them an explicit type declaration. This is best practice for everything except very short functions.
+Here's how you declare the type of a function:
+```haskell
+removeNonUppercase :: [Char] -> [Char]
+removeNonUppercase st = [ c | c <- st, c `elem` ['A'..'Z']]
+```
+- In this example `[Char] -> [Char]` means that it takes in a string and returns a string (The `[Char]` type is synonymous with `[String]`, so its clearer to write `String -> String`)
+- To define multiple parameters you would separate each parameter with a `->`, e.g., `Int -> Int -> Int -> Int` the last value will always be the return value
+#### Common Types
+- `Int` is an integer.
+  - Used for Whole numbers.
+  - Is bounded. On 32-bit machines typically has a max value of 2147483647 and minimum of -2147483648. 
+- `Integer` is also used for integers but **these are not bounded**, should only be used for huge numbers because its not very efficient.
+- `Float` is a real floating point number with single precision.
+- `Double` is a real floating point number with double precision.
+- `Bool` is the boolean type. It only has one of two values: `True` or `False`
+- `Char` represents a character. It's denoted by single quotes. A list of characters is a string.
+- Tuples are also types but their type is dependent on their length and components
+##### Type Variables
+- A **type variable** can be of any type.
+- These are used to write very general functions if you don't use any behaviors specific to any specific type.
+- Functions that have type variables are called **polymorphic functions**
+- Type variables are usually given the names of `a`, `b`, `c`, `d` ...
+##### Typeclasses
+- A typeclass is a sort of interface that defines some behavior.
+- If a type is a part of a typeclass, it supports and implements the behavior the typeclass describes.
