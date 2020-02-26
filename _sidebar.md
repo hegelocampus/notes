@@ -21,6 +21,7 @@
 	  * [General Info](/javascript/react/overview)
 	  * [Middleware](/javascript/react/middleware)
 	  * [React Router](/javascript/react/react_router)
+	* Vue
 	* Redux
 	  * [General Info](/javascript/redux/overview)
 	  * [Reducers](/javascript/redux/reducers_and_react)
@@ -28,6 +29,9 @@
 	  * [Sagas](/javascript/redux/redux_sagas.md)
   * Haskell
   	* [Learn You Haskell for Great Good](/haskell/learn_you_haskell_for_great_good)
+  * Python
+	* Django
+	  * [Overview](/python/django/overview)
   * Ruby
 	* [Instance Variables](/ruby/instance_variables)
 	* [Metaprogramming and Reflection](/ruby/metaprogramming_and_reflection)
