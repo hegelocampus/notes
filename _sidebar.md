@@ -31,7 +31,7 @@
   	* [Learn You Haskell for Great Good](/haskell/learn_you_haskell_for_great_good)
   * Python
 	* Django
-	  * [Overview](/python/django/overview)
+	  * [Overview](/python/django/overview.md)
   * Ruby
 	* [Instance Variables](/ruby/instance_variables)
 	* [Metaprogramming and Reflection](/ruby/metaprogramming_and_reflection)
