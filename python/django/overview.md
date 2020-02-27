@@ -29,7 +29,7 @@ $ python manage.py runserver
 ```
 - It runs by default on port 8000, you can run it on a custom port by passing the desired port as an argument
 - This server performs hot reload on each request (as needed). So you don't need to restart the server for (most) changes to take effect, although you will need to restart the server for file additions.
-- Projects vs. apps
+- Projects vs. Apps
   - Apps are atomized pieces of the application that perform a specific task. Can be in multiple different projects.
   - Projects are collections of configuration and apps for a particular website. Can contain multiple apps.
 - Apps can exist anywhere in your Python path
@@ -88,5 +88,81 @@ $ python manage.py makemigrations appName
 ```bash
 python manage.py sqlmate appName 0001
 ```
-You can also use `python manage.py check` to check for any problems that may be created by running the migrations or otherwise touching the database.
+You can also use `python manage.py check` to check for any problems that may be created by running the migrations or otherwise touching the database.  
+Once you're ready to actually make your migrations you can do so through the following command:
+```bash
+$ python manage.py migrate
+```
+### Clear steps for creating models
+- Change he models in `models.py`
+- Run `python manage.py makemigrations` to create the migrations for those changes
+- Run `python manage.py migrate` to apply those changes
+### Playing with the API
+- You can open up the iterative python shell and play with the Django API using `python manage.py shell`
+  - This is basically equivalent to the `rails console`, the biggest difference is you have to manually import what you want to mess with, e.g., use `from exampleApp.models import Foo, Bar`
+  - A super helpful method is `help()`, which you can run on any of your defined classes in order to see a breakdown of the methods they have defined for them, their parameters and instance variables.
+- You can use this to test queries on your database, e.g., `Question.objects.all()`, this is also nearly identical to Rails where you would run `Question.all()` to get the equivalent query
+- You can create a new model object through creating a new class instance and then using `foo.save` to actually save it to the database (just like in Rails)
+- You can change the values in the database by reassigning the instance variables and then calling save again, e.g., `foo.question_text = "Hello"` and then `foo.save()`
+- To get useful representations of the data in your database you should add a `__str__()` method to your models. **This is actually pretty important**
+- To query for a particular field you can use `Foo.objects.filter(id=1)` or `Foo.objects.filter(question_text__startswith='What')` returns a set of Query objects, to query for a single object you can use `Foo.objets.get()` which just return a single Query object
+  - You can use the `pk` shortcut to search by primary key
+  - If you try to request something that doesn't exist it will raise an exception
+- For info on associations you can check out the [doc page on accessing related objects](https://docs.djangoproject.com/en/3.0/ref/models/relations/)
+## Django Admin
+- You can create a super user with `python manage.py createsuperuser`
+- The default admin URL is at "/admin/" on your domain
+- The types of Groups and Users here are provided by `django.contrib.auth`
+- To make any of your apps modifiable in the admin you must tell the admin that Question objects have an admin interface. This is done in the `appName/admin.py` file. You can do this in the following way:
+```python
+from django.contrib import admin
 
+from .models import Question
+
+admin.site.register(Question)
+```
+- By allowing admin interface with a model there will be an interface added where you can edit any of the information of the database objects with a form that is generated via the models properties
+  - Any changes will be logged in the admin history, which can be found in the upper right of the admin portal.
+## Views
+- A view is a "type" of Web page in your Django app that generally serves a specific function and has a specific template.
+- Web pages and other content are delivered by views. Each view is represented by a Python function (or method, in the case of class-based views).
+- The routing from URL to view is setup in the `URLconfs`
+- Views are defined in `appName/views.py`
+- You can use angle brackets to "capture" part of the URL to pass it in as a parameter to the view, e.g., `path('<int:question_id>/', views.detail, name='detail')` would pass in the parameter `question_id`
+- Each view is responsible for doing one of two things:
+  - Returns an `HttpResponse` object containing the content for the requested page
+  - Or Raising an exception such as `Http404`
+- Views can read records for the database, or not. It can really do anything you want as long as you return either an `HttpResponse` or an exception
+### Templates
+- You can define templates that can be called from the views... Just like in Rails
+- These templates live in `app_name/templates/model_name/view_name.html`
+- It's best practice to define the variables that you'll need in the template in a `context` dictionary map.
+- You can get a shortcut to the template using the `render()` method, it takes the following parameters:
+  - `request` 
+  - Template name as a string 
+  - The context object of variables that need to be accessible to the template.
+### Raising a 404 error
+- You actually raise the exception in the view function/method, you can wrap the code that may fail in a try block and then raise the error in the `except` conditional, e.g.,
+```python
+def detail(request, question_id):
+	try:
+	    question = Question.objects.get(pk=question_id)
+	except Question.DoesNotExist:
+	    raise Http404("Question does not exist")
+	return render(request, 'polls/detail.html', {'question': question})
+```
+- There's a shortcut for this too, its `get_object_or_404()`. This method raises a 404 not found error if the object you are attempting to fetch doesn't exist. It accepts a Django model as its first argument an arbitrary number of keyword arguments to be passed to the `get()` function call
+  - There's also `get_list_or_404()` which uses `filter()` instead of `get()` and raises a `Http404` error if the list is empty.
+### Using the template system
+- The template system uses dot-lookup syntax to access the variable attributes
+- Python method-calling happens in `{% foo %}` blocks. 
+- You can read more about templates in the [template guide](https://docs.djangoproject.com/en/3.0/topics/templates/)
+### Removing hardcoded URLs in templates
+- Its best practice to use the following to create links for anchor tags:
+```django
+<li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
+```
+- This allows for the tag to look up the URL definition as it is specified in the `URLConfig`
+### Namespacing URL names
+- This is done through simply adding an `app_name` to the apps URLconf
+- Then you need to refer to the desired URL in the template thorough its namespaced URL, e.g., `polls:detail` rather than just simply `detail`, this seems more complicated but otherwise Django won't know which URL you want if you have multiple apps
