@@ -166,3 +166,13 @@ def detail(request, question_id):
 ### Namespacing URL names
 - This is done through simply adding an `app_name` to the apps URLconf
 - Then you need to refer to the desired URL in the template thorough its namespaced URL, e.g., `polls:detail` rather than just simply `detail`, this seems more complicated but otherwise Django won't know which URL you want if you have multiple apps
+## Forms
+- **Remember the** `csrf_token`
+- Make sure to define the form's `method` as `post` or `patch`
+- In the view remember to return a `HttpResponseRedirect` after a successful POST request
+### Generic Views
+- There are a bunch of built in generic views that are great and will save you time
+- These generics will need to have a `model` or `context_object_name` and `template_name` instance variables defined
+- Generics typically expect the variable they are being asked to fetched to be named `pk` rather than, for example, `question_id`
+- By default the `DetailView` generic uses a template called `<app name>/<model name>_detail.html`. The `template_name` attribute is used to tell Django to use a particular template name rather than the default
+## Automated testing
