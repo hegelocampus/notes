@@ -198,3 +198,32 @@ How Django runs tests:
 - Then runs those methods and prints the results
 ### Testing a view
 - You can test a view by using `self.client.get(reverse('polls:index'))` to get the content of the response.
+- **When testing, more is better**, as long as your tests are sensibly arranged, they won't become unmanageable.
+  - Create a separate `TestClass` for **each model or view**
+  - Create a separate **test method for each set of conditions** you want to test
+  - Write **semantic test method names** that describe their function
+## Static files
+- I wonder how SASS files would work here? Do I need a tool to compile SASS to CSS or does Django have that functionality built in?
+- These are defined in the `app_name/static/` directory, they should be namespaced under a subdirectory, for example, a CSS file should be nested as such: `app_name/static/model_name/style.css`
+You have to manually import these style sheets, you can do this as follows:
+```django
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+```
+- Its best practice to store images in their own subdirectory under the namespaced statics directory: `app_name/static/model_name/images/background.gif`
+- Images have to be imported to your stylesheets in a special way:
+```css
+
+body {
+  background: white url("images/background.gif") no-repeat;
+}
+```
+## Customizing the admin form
+- Configuration is defined in `app_name/admin.py`
+- You define settings through creating a new `<AppName>Admin` class that inherits from `admin.ModelAdmin`, this new class is then passed in as the second optional parameter to `admin.site.register`
+- This is most useful when working with complex models with many form fields, you can put the most useful ones at top and group like fields together.
+  - You can be done through defining the `fieldsets`, which should be an array of tuples
+- There's a lot you can do to change the admin form, its probably worth looking into the docs when you want to do this.
+### Customizing admin look and feel
+- You can make changes to how the admin page renders through Django's template system. To do this you'll have to add your admin templates to the `Temprates.DIRS` in `site_name/settings.py`
