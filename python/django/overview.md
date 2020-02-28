@@ -176,3 +176,25 @@ def detail(request, question_id):
 - Generics typically expect the variable they are being asked to fetched to be named `pk` rather than, for example, `question_id`
 - By default the `DetailView` generic uses a template called `<app name>/<model name>_detail.html`. The `template_name` attribute is used to tell Django to use a particular template name rather than the default
 ## Automated testing
+- In automated tests the tests are done by the system. This is the type of testing I, personally, think of when I think of code testing.
+- You build tests in Django by creating a subclass of the `TestCase` subclass for each element you want to test. This class will have methods defined for each test, e.g.,
+```python
+class QuestionModelTests(TestCase):
+    def test_was_published_recently_with_future_question(self):
+        """
+        was_published_recently() returns False for questions whose pub_date is
+        in the future
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        future_question = Question(pub_date=time)
+		self.assertIs(future_question.was_published_recently(), False)
+```
+- Tests are ran through `python manage.py test app_name` just like every other Django command
+- Django automatically creates a testing database
+How Django runs tests:
+- Looks for tests in the stated application
+- Looks for a subclass of the `django.test.TestCase` class
+- Looks for test methods, whose name must begin with `test`
+- Then runs those methods and prints the results
+### Testing a view
+- You can test a view by using `self.client.get(reverse('polls:index'))` to get the content of the response.
