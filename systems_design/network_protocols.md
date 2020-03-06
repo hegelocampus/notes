@@ -25,7 +25,7 @@
   - IP Data/Payload:
 	- The actual information specifying the messages data
 ### TCP:
-- Aims to solve the shortcomings of the IP protocol, namely to ensure packets have been successfully received, that the packets are placed in the correct order, and that the packes are not corrupted.
+- Aims to solve the shortcomings of the IP protocol, namely to ensure packets have been successfully received, that the packets are placed in the correct order, and that the packs are not corrupted.
 - This type of request adds a TCP header to a normal IP packet.
   - This header specifies a "handshake" protocol where there is a connection established between the server and the client where data can be openly transmitted.
 	- This is somewhat limited. If data is not sent quickly enough the connection can time out. And either of the machines can also end the connection.
