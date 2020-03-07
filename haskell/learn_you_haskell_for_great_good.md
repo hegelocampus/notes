@@ -350,3 +350,22 @@ calcBmis xs = [bmi w h | (w, h) <- xs]
 ```
 - Where bindings can even be nested if you want to get a little wild. Its actually a fairly common idiom.
 ### Let Bindings
+- While `where` bindings are a syntactic construct that lets you bind to variable at the end of a function. `let` bindings allow you to bind to variable anywhere and are expressions themselves. 
+- This is very similar to JavaScript `let` variable declarations. The only difference is you need to declare where this variable will be using using an `in` statement. Making the complete form of this syntax `let <bindings> in <expression>`
+For example:
+```haskell
+cylinder :: (RealFloat a) => a -> a -> a
+cylinder r h =
+  let sideArea = 2 * pi * r * h
+	  topArea = pi * r ^2
+  in sideArea + 2 * topArea
+```
+- The variables defined in the `let` section are only accessible to the expression following the `in`
+- Like `where` bindings, `let` bindings must also be in a column
+- `let` bindings differ from `where` bindings in that `let` expressions **are themselves expressions**
+- You can even put let bindings inside list comprehensions. Heres the BMI converter written using let bindings:
+```haskell
+calcBmis :: (RealFloat a) => [(a, a)] -> [a]
+calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
+```
+
