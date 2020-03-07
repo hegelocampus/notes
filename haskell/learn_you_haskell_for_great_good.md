@@ -255,4 +255,98 @@ You shouldn't need to do this for most expressions but if the compiler can't fig
 - `Floating` includes only floating point numbers. `Float` and `Double`
 A very useful function for dealing with numbers is `fromIntegral`. It takes an integral number and turns it into a more general number.
 ## Syntax in Functions
-
+### Pattern Matching
+- Pattern matching allows you to specify patterns to which some data should conform. You can then check the data against that pattern to see if it does and even deconstruct the data according to the pattern.
+- You can define separate function bodies for different patterns.
+- You can pattern match on any data type.
+Trivial example:
+```haskell
+lucky :: (Integral a) => a -> String
+lucky 7 = "LUCKY NUMBER SEVER!"
+-- x Defines the default case, if this were defined first it would never hit the 7 case
+lucky x = "sorry, you're out of luck, pal!"
+```
+- When you call a pattern matching function such as this one the patterns will be checked from top to bottom. When a pattern is found, the corresponding function body is called. Otherwise it falls through to the following pattern.
+- You can do normally do the same things as you can with patterns with if statements, but patterns are generally much more elegant.
+- **If your pattern match doesn't find a match it will raise an exception**
+- You can even pattern match in list comprehensions:
+```haskell
+ghci> let xs = [(1,3), (4,3), (2,4), (5,3), (5,6), (3,1)]  
+ghci> [a+b | (a,b) <- xs]  
+[4,7,6,8,11,4]   
+```
+- When used in this way if the pattern match were to fail, it would just move on to the next element.
+- A particularly useful pattern is `x:xs` it will match lists of more than 1 in length. `x` would represent the first element and `xs` would be the rest of the list.
+- There are also _patterns_ 
+  - These allow you to break something up according to a pattern and bind it to names while still keeping reference to the whole thing.
+  - This is done by prepending a `@` to the pattern, e.g., `xs@(x:y:ys)`. This pattern would match. Heres a good example of how you can use this:
+```haskell
+capital :: String -> String  
+capital "" = "Empty string, whoops!"  
+capital all@(x:xs) = "The first letter of " ++ all ++ " is " ++ [x] 
+capital "Dracula" -- "The first letter of Dracula is D"  
+```
+### Guards
+- Guards are a way of testing whether some property of a value are true or false. 
+- These are also similar to if statements. They, like pattern matching, tend to be much more readable than if statements. Especially if you have several conditions. Guards also work great with patterns.
+An Example:
+```haskell
+bmiTell :: (RealFloat a) => a -> String  
+bmiTell bmi  
+  | bmi <= 18.5 = "You're underweight, you emo, you!"
+  | bmi <= 25.0 = "You're supposedly normal. Pffft, I bet you're ugly!"
+  | bmi <= 30.0 = "Your a little overweight my guy!"
+  | otherwise   = "Big boi!"
+```
+- Like pattern matching, this check is done in order, from top to bottom.
+- A guard is essentially a boolean function where if the function matches the corresponding function body is used, else it drops through to the next guard.
+- The last guard is typically `otherwise`, otherwise is just defined as `otherwise = True` so that it will always trigger the 
+You can also define these as function that take as many parameters as you want, of course.
+```haskell
+bmiTell :: (RealFloat a) => a -> a -> String  
+bmiTell weight height
+  | weight / height ^ 2 <= 18.5 = "You're underweight, you emo, you!"
+  | weight / height ^ 2 <= 25.0 = "You're supposedly normal. Pffft, I bet you're ugly!"
+  | weight / height ^ 2 <= 30.0 = "Your a little overweight my guy!"
+  | otherwise   = "Big boi!"
+```
+### Where
+You can use `where` to dry up your code by defining a variable for use in the function
+```haskell
+bmiTell :: (RealFloat a) => a -> a -> String  
+bmiTell weight height
+  | bmi <= 18.5 = "You're underweight, you emo, you!"
+  | bmi <= 25.0 = "You're supposedly normal. Pffft, I bet you're ugly!"
+  | bmi <= 30.0 = "Your a little overweight my guy!"
+  | otherwise   = "Big boi!"
+  where bmi = weight / height ^ 2
+```
+You can even define multiple variables:
+```haskell
+bmiTell :: (RealFloat a) => a -> a -> String  
+bmiTell weight height
+  | bmi <= skinny = "You're underweight, you emo, you!"
+  | bmi <= normal = "You're supposedly normal. Pffft, I bet you're ugly!"
+  | bmi <= fat = "Your a little overweight my guy!"
+  | otherwise   = "Big boi!"
+  where bmi = weight / height ^ 2
+		skinny = 18.5
+		normal = 25.0
+		fat = 30.0
+```
+- The variables defined within `where` are only visible to that function.
+- All the names need to be aligned to column for Haskell to understand them.
+- You can also use where binding to pattern match. The previous block can be rewritten as follows:
+```haskell
+...
+where bmi = weight / height ^ 2
+	  (skinny, normal, fat) = (18.5, 25.0, 30.0)
+```
+You can even use where blocks to define helper functions:
+```haskell
+calcBmis :: (RealFloat a) => [(a, a)] -> [a]  
+calcBmis xs = [bmi w h | (w, h) <- xs]  
+  where bmi weight height = weight / height ^ 2  
+```
+- Where bindings can even be nested if you want to get a little wild. Its actually a fairly common idiom.
+### Let Bindings
