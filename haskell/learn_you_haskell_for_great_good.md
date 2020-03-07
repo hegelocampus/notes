@@ -368,4 +368,25 @@ cylinder r h =
 calcBmis :: (RealFloat a) => [(a, a)] -> [a]
 calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
 ```
-
+### Case expressions
+- Pattern matching is actually just syntactic sugar for case expressions. The following two blocks of code are actually interchangeable.
+Pattern matching:
+```haskell
+head' :: [a] -> a
+head' [] = error "No head for empty lists!"
+head' (x:_) = x
+```
+Case expression:
+```haskell
+head' :: [a] -> a
+head' xs = case xs of [] -> error "No head for empty lists!"
+					  (x:_) -> x
+```
+The syntax is essentially 
+```haskell
+case expression of pattern -> result
+				   pattern -> result
+				   pattern -> result
+```
+- Case expressions are cool because, unlike pattern matching, you can use case expressions pretty much anywhere
+## Recursion
