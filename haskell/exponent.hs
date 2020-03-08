@@ -1,4 +1,4 @@
-raiseTo :: (Integral a, Integral a) => a -> a -> a
-_ `raiseTo` 0 = 1
-a `raiseTo` 1 = a
-a `raiseTo` b = a * (a `raiseTo` (b - 1))
+raiseTo :: (Integral a) => a -> a -> a
+raiseTo _ 0 = 1
+raiseTo a 1 = a
+raiseTo a b = a * (a `raiseTo` (b - 1))

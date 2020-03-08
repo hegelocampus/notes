@@ -390,3 +390,86 @@ case expression of pattern -> result
 ```
 - Case expressions are cool because, unlike pattern matching, you can use case expressions pretty much anywhere
 ## Recursion
+- Recursion is great in Haskell. Its especially important because in Haskell you do computations by declaring what something _is_ instead of declaring _how_ you get it.
+- Recursive calls are often used in place of while looks in Haskell (because while loops don't exist).
+```haskell
+maximum' :: (Ord a) => [a] -> a
+maximum' [] = error "maximum of empty list"
+maximum' [x] = x
+maximum' (x:xs)
+  | x > maxTail = x
+  | otherwise = maxTail
+  where maxTail = maximum' xs
+```
+- Using pattern matching to split a list into a head and a tail is a very common idiom in recursion with lists. This is performed with `(x:xs)`
+The above funciton is a little more clear rewritten using `max`:
+```haskell
+maximum' :: (Ord a) => [a] -> a  
+maximum' [] = error "maximum of empty list"  
+maximum' [x] = x  
+maximum' (x:xs) = max x (maximum' xs)  
+```
+The essence of this function is the definition of the maximum as the max of the first element and the maximum of the tail.
+#### Recursive examples
+`replicate` takes an `Int`, `n`, and some element and returns a list that has `n` of the same element.
+```haskell
+replicate' :: (Num i, Ord i) => i -> a -> [a]
+replicate' :: n x
+  | n <= 0 = []
+  | otherwise x:replicate' (n-1) x
+```
+`take` takes a certain number of elements from a list, e.g., `take 3 [5,4,3,2,1]` returns `[5,4,3]`
+```haskell
+take' :: (Num i, Ord i) => i -> [a] -> [a]
+take' n _
+  | n <= 0     = [] -- Edge condition 1
+take' _ [] 	   = [] -- Edge condition 2
+take' n (x:xs) = x : take' (n-1) xs
+```
+`reverse` simply returns the reversed tail and the head at the end
+```haskell
+reverse' :: [a] -> [a]
+reverse' [] = []
+reverse' (x:xs) = reverse' xs ++ [x]
+```
+Recursion is really good at creating infinite lists. `repeat` takes an element and returns an infinite list that just has that element
+```haskell
+repeat' :: a -> [a]
+repeat' x = x:repeat' x
+```
+`zip` takes two lists and zips them together. `zip [1,2,3] [2,3]` returns `[(1,2),(2,3)]`. It takes two lists and there are two edge cases: when either list is empty.
+```haskell
+zip' :: [a] -> [b] -> [(a,b)]
+zip' _ [] = []
+zip' [] _ = []
+zip' (x:xs) (y:ys) = (x,y):zip' xs ys
+```
+`zip'` breakdown:
+- First the patterns check if either list is empty, if so it returns an empty list
+- The third pattern defines the two lists zipped equal to pairing their heads and tacking on the zipped tails.
+`elem` takes an element and a list and sees if that element is in the list. The edge condition is an empty list. If the head isn't the elment then we check the tail. If we reach an empty list then we return `False`.
+```haskell
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' a [] = False
+elem' a (x:xs)
+  | a == x
+  | otherwise = a `elem'` xs
+```
+#### Quick sort
+- The type signature will be `quicksort :: (Ord a) => [a] -> [a]`. This shouldn't be surprising.
+- The edge condition is an empty list.
+- **A sorted list is a list that has all the values smaller than (or equal to) the current head of the list in front (given all those values are also sorted) of the head, and all the values that are greater than the head to the right of the head.**
+```haskell
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) =
+  let smallerSorted = quicksort [a | a <- xs, a <= x]
+	  biggerSorted = quicksort [a | a <- xs, a > x]
+  in smallerSorted ++ [x] ++ biggerSorted
+```
+### Thinking Recursively
+- Typical edge cases:
+  - Arrays: an empty array
+  - Trees: a node without children
+  - Numbers: often 0, but its very case dependent
+- When trying to think of a recursive solution, try to think of when a recursive solution wouldn't make sense and see if you can use that as the edge case.
