@@ -473,3 +473,11 @@ quicksort (x:xs) =
   - Trees: a node without children
   - Numbers: often 0, but its very case dependent
 - When trying to think of a recursive solution, try to think of when a recursive solution wouldn't make sense and see if you can use that as the edge case.
+## Higher Order Functions
+- Haskell functions can take functions as parameters and return functions as return values. A function that does either of these is called a **higher order function**
+### Curried functions
+- Every function in Haskell officially only takes only one parameter. Literally every function that takes in more than one parameter is actually being curried
+  -	For example, `max` appears to take to parameters and returns the one that is bigger, calling it with `max 4 5` first creates a function that take a new parameter and returns either `4` or that parameter, whichever is larger. Then `5` is applied that function and the function produces the desired result.
+- Passing in too few parameters will create a **partially applied** function. You can then call this later by passing in the needed parameters. This is handy for creating functions on the fly.
+
+
