@@ -479,5 +479,82 @@ quicksort (x:xs) =
 - Every function in Haskell officially only takes only one parameter. Literally every function that takes in more than one parameter is actually being curried
   -	For example, `max` appears to take to parameters and returns the one that is bigger, calling it with `max 4 5` first creates a function that take a new parameter and returns either `4` or that parameter, whichever is larger. Then `5` is applied that function and the function produces the desired result.
 - Passing in too few parameters will create a **partially applied** function. You can then call this later by passing in the needed parameters. This is handy for creating functions on the fly.
-
-
+If you wanted to create a function that takes a number and compares it to 100, for example, you can do something like the following:
+```haskell
+compareWithHundred :: (Num a, Ord a) => a -> Ordering
+compareWithHundred = compare 100
+```
+This works because `compare 100` still needs an additional parameter, so **this function will return a function that takes a single parameter.**
+- You can also partially apply infix functions. To do this you must surround it with parentheses and only supply a parameter on one side
+Here's a super simple example:
+```haskell
+divideByTen :: (Floating a) => a -> a
+divideByTen = (/10)
+```
+- There is a single exception to this rule, being `-` because `(-4)` is negative 4, not minus 4. To do minus 4 you can use `subtract`.
+- To declare a function that takes in a function you must wrap the function parameter in parentheses as such:
+```haskell
+applyTwice :: (a -> a) -> a -> a -- Here the first 'a' in (a -> a) is a function that takes in the parameter 'a'
+applyTwice f x = f (f x)
+```
+Here's some standard library tools that take in a funciton and them reimplemented:
+- `flip` - Takes in a function and returns a function that is like the original but with the first two arguments flipped
+```haskell
+flip' :: (a -> b -> c) -> (b -> a -> c)
+flip' f y x = f x y
+```
+### Maps and filters
+#### Map
+`map` takes a funciton and a list and applies the function to every element in the list, creating a new list. It is defined as follows:
+```haskell
+map :: (a -> b) -> [a] -> [b]
+map _ [] = []
+map f (x:xs) = f x : map f xs
+```
+Here's some examples of how you can use `map` in Haskell:
+```haskell
+ghci> map (+3) [1,5,3,1,6]
+[4,8,6,4,9]
+ghci> map (++ "!") ["BIFF", "BANG", "POW"]
+["BIFF!","BANG!","POW!"]
+ghci> map (replicate 3) [3..6]
+[[3,3,3],[4,4,4],[5,5,5],[6,6,6]]
+ghci> map (map (^2)) [[1,2],[3,4,5,6],[7,8]]
+[[1,4],[9,16,25,36],[49,64]]
+ghci> map fst [(1,2),(3,5),(6,3),(2,6),(2,5)]
+[1,3,6,2,2]
+```
+#### Filter
+`filter` is a function that takes a predicate (a function that tells whether something is true or false) and a list and then returns a list of elements that satisfy the predicate.  
+Here's the type signature and implementation:
+```haskell
+filter :: (a -> Bool) -> [a] -> [a]
+filter _ [] = []
+filter p (x:xs)
+  | p x 	  = x : filter p xs
+  | otherwise = filter p xs
+```
+Here is some example usage:
+```haskell
+ghci> filter (>3) [1,5,3,2,1,6,4,3,2,1]
+[5,6,4]
+ghci> filter (==3) [1,2,3,4,5]
+[3]
+ghci> filter even [1..10]
+[2,4,6,8,10]
+ghci> let notNull x = not (null x) in filter notNull [[1,2,3],[],[3,4,5],[2,2],[],[],[]]
+[[1,2,3],[3,4,5],[2,2]]
+ghci> filter (`elem` ['a'..'z']) "u LaUgH aT mE BeCaUsE I aM diFfeRent"
+"uagameasadifeent"
+ghci> filter (`elem` ['A'..'Z']) "i lauGh At You BecAuse u r aLL the Same"
+"GAYBALLS"
+```
+You can implement quicksort using filter to make it more readable:
+```haskell
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x:xs) =
+  let smallerSorted = quicksort (filter (<=x) xs)
+      biggerSorted = quicksort (filter (> x) xs)
+  in smallerSorted ++ [x] ++ biggerSorted
+```
