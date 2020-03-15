@@ -498,6 +498,28 @@ applyTwice :: (a -> a) -> a -> a -- Here the first 'a' in (a -> a) is a function
 applyTwice f x = f (f x)
 ```
 Here's some standard library tools that take in a funciton and them reimplemented:
+- `zipWith` is another super useful function in the standard library. It takes a function and two lists as parameters and then joins the list by applying the function between corresponding elements.
+Here's one way to implement it:
+```haskell
+zipWith' :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith' _ [] = []
+zipWith' [] _ = []
+zipWith' f (x:xs) (y:ys) = f x y : zipWith' f xs ys
+```
+Based on the type declaration you can see that it takes in two lists that can have different element types and then returns a new list that can have a brand new type. But the first type of the function must be of the type in the first list, the second of the type of the second list, and the return value must be the type of the third list.  
+Here are some example use cases:
+```haskell
+ghci> zipWith' (+) [4,2,5,6] [2,6,2,3]  
+[6,8,7,9]  
+ghci> zipWith' max [6,3,2,1] [7,3,1,5]  
+[7,3,2,5]  
+ghci> zipWith' (++) ["foo ", "bar ", "baz "] ["fighters", "hoppers", "aldrin"]  
+["foo fighters","bar hoppers","baz aldrin"]  
+ghci> zipWith' (*) (replicate 5 2) [1..]  
+[2,4,6,8,10]  
+ghci> zipWith' (zipWith' (*)) [[1,2,3],[3,5,6],[2,3,4]] [[3,2,2],[3,4,5],[5,4,3]]  
+[[3,4,6],[9,20,30],[10,12,12]] 
+```
 - `flip` - Takes in a function and returns a function that is like the original but with the first two arguments flipped
 ```haskell
 flip' :: (a -> b -> c) -> (b -> a -> c)
@@ -558,3 +580,10 @@ quicksort (x:xs) =
       biggerSorted = quicksort (filter (> x) xs)
   in smallerSorted ++ [x] ++ biggerSorted
 ```
+### Lambdas
+- Lambdas are essentially anonymous functions that we can use if we need a function only once.
+- To create a lambda you use a `\` and then whatever parameters then a `->` and then the body of the function, e.g., `\ x y -> x + y`
+- You can often get away with currying in Haskell to avoid lambdas. For example, `map (+3) [1,6,3,2]` is a more elegant equivalent to `map (\x -> x + 3) [1,6,3,2]`
+- You can even use pattern matching in lambdas, but be careful doing so because **if a pattern match fails in a lambda a runtime error occurs**.
+### Folds
+
