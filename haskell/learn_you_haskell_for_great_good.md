@@ -586,4 +586,35 @@ quicksort (x:xs) =
 - You can often get away with currying in Haskell to avoid lambdas. For example, `map (+3) [1,6,3,2]` is a more elegant equivalent to `map (\x -> x + 3) [1,6,3,2]`
 - You can even use pattern matching in lambdas, but be careful doing so because **if a pattern match fails in a lambda a runtime error occurs**.
 ### Folds
+- Folds are essentially JavaScript or Ruby reducers
+- A fold takes a binary function, a starting value (or accumulator), and a list to fold.
+#### `foldl`
+- `foldl` is left fold. It folds lists from left to right. The binary function is applied between the starting value and the head of the list onward.
+Example usage:
+```haskell
+sum' :: (Num a) => [a] -> a
+sum' xs = foldl (\acc x -> acc + x) 0 xs
 
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' y ys = foldl (\acc x -> if x == y then True else acc) False ys
+```
+#### `foldr`
+- `foldr` is right fold. It works in the same way as `foldl` only it goes from right to left and its function takes in the accumulator as the second argument (`\x acc -> ...` rather than `\acc x -> ...`).
+- When building a new list its best practice to use `foldr` because it allows you to use the less expensive `:` list operator vs having to use the expensive `++` operator.
+```haskell
+map' :: (a -> b) -> [a] -> [b]  
+map' f xs = foldr (\x acc -> f x : acc) [] xs  -- This is good
+
+map' :: (a -> b) -> [a] -> [b]  
+map' f xs = foldl (\acc x -> acc ++ [f x]) [] xs -- This is fine but less economical
+```
+- One weird caveat of folds is that **right folds can be used on infinite lists while left folds cannot.**
+- **Folds can be used to implement any function where you traverse a list once, element by element, and then return something based on that.**
+- `foldl1` and `foldr1` work much like `foldl` and `foldr` only they don't need an explicit starting value. But **they will throw an exception if passed an empty list.**
+- `scanl` and `scanr` are similar to `foldl` and `foldr` only they return a list containing all intermediate accumulator states.
+Because Haskell is lazy you can do things like get the square root every number in an infinite list and then Haskell only evaluates that value when it needs a particular value:
+```haskell
+sqrtSums :: Int -- Returns the number of elements needed for the sum of the roots of all natural numbers to exceed 1000
+sqrtSums = length (takeWhile (<1000) (scanl1 (+) (map sqrt [1..]))) + 1
+```
+### Function application with $
