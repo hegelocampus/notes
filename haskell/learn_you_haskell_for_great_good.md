@@ -618,3 +618,22 @@ sqrtSums :: Int -- Returns the number of elements needed for the sum of the root
 sqrtSums = length (takeWhile (<1000) (scanl1 (+) (map sqrt [1..]))) + 1
 ```
 ### Function application with $
+`$` is defined in the following way:
+```haskell
+($) :: (a -> b) -> a -> b
+f $ x = f x
+```
+- `$` has the lowest precedence of any operator. So whereas normal function application is left-associative. With `$` it is right-associative.
+- This is typically used as a convince function so you don't have to write so many parentheses. 
+Using `$` you can simplify functions as follows:
+```haskell
+sum (map sqrt [1..130]) == sum $ map sqrt [1..130]
+```
+### Function composition
+`.` is used for function composition. It is defined as follows:
+```haskell
+(.) :: (b -> c) -> (a -> b) -> a -> c
+f . g = \x -> f (g x)
+```
+- `f` must take as its parameter a value that has the same type as `g`'s return value. 
+- For example `negate . (* 3)` returns a function that takes a number, multiplies it by 3 and then negates it.
