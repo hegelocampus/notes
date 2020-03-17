@@ -651,4 +651,97 @@ map (negate . sum . tail) [[1..5],[3..6],[1..7]] --This
 ```
 ## Modules
 ### Loading Modules
+- A module is a collection of related functions, types, and typeclasses. A program is then a collection of modules where the main module loads up the other modules and then uses their functions defined in them to do something.
+- All of Haskell's default functions are part of the `Prelude` module, this module is imported by default.
+- The import syntax in Haskell is `import <module name>`. This must be done before defining any functions. When you import something all of its functions become available in the global namespace.
+Example:
+```haskell
+import Data.List
 
+numUniques :: (Eq a) => [a] -> Int
+numUniques = length . num --nub is a function defined in Data.List that takes a list and returns a list with no duplicate elements
+```
+- To import a module into GHCI you should use `:m + Data.List Data.Map`
+If you only need a couple of functions from a module you can selectively import them using the following syntax:
+```haskell
+import Data.List (nub, sort) --This will only import nub and sort
+```
+You can also do the inverse and hide some select functions:
+```haskell
+import Data.List hiding (nub) --This will import all functions except nub
+```
+Another way to deal with name collisions is by using a qualified import
+```haskell
+import qualified Data.Map
+```
+You can then use the `as` syntax to alias the import in order to make using the imported functions easier
+```haskell
+import qualified Data.Map as M
+```
+#### Common Modules
+##### Data.List
+This module provides helpful functions for dealing with lists. You've already used some because `Prelude` exports some of this modules functions, such as `map` and `filter` for convenience.
+- `intersperse` takes an element and a list and puts that element in between each pair of elements in the list
+```haskell
+ghci> intersperse '.' "MONKEY"  
+"M.O.N.K.E.Y"
+```
+- `intercalate` takes a list of lists and a list and then inserts that list in between all of those lists, and then flattens the result
+```haskell
+ghci> intercalate " " ["hey","there","guys"]  
+"hey there guys"  
+```
+- `transpose` transposes a list of lists. If you look at a list as a 2D matrix, the columns become the rows and vice versa
+```haskell
+ghci> transpose [[1,2,3],[4,5,6],[7,8,9]]  
+[[1,4,7],[2,5,8],[3,6,9]]    
+```
+- `foldl'` and `foldl1'` are stricter versions of their lazy incarnations. You should use them if you get stack overflow errors when doing lazy folds, they are often a quick fix for this.
+- `concat` flattens a list of lists into just a single list of elements. This will just remove one level of nesting.
+```haskell
+ghci> concat ["foo","bar","car"]
+"foobarcar"
+```
+- `concatMap` is the same as first mapping a function to a list and then concatenating the list with `concat`
+- `and` takes a list of boolean values and returns `True` only if all the values in the list are `True`
+```haskell
+ghci> and $ map (>4) [5,6,7,8]
+True
+ghci> and $ map (==4) [4,4,4,3,4]  
+False 
+```
+- `or` is similar to `and`, but it returns `True` if **any** of the boolean values in a list are `True`
+- `any` and `all` take a predicate and then check if any or all of the elements in a list satisfy the predicate.
+- `iterate` takes a function and a starting value. It applies the function to the starting value over and over again, creating an infinite list
+```haskell
+ghci> take 10 $ iterate (*2) 1  
+[1,2,4,8,16,32,64,128,256,512]  
+ghci> take 3 $ iterate (++ "haha") "haha"  
+["haha","hahahaha","hahahahahaha"]  
+```
+- `splitAt` takes a number and a list. It splits the list at that number of elements, returning a tuple pair.
+- `takeWhile` is very useful. It takes elements from a list while the predicate holds, cutting off the list as soon as an element doesn't return true
+```haskell
+ghci> takeWhile (>3) [6,5,4,3,2,1,2,3,4,5,4,3,2,1]  
+[6,5,4]  
+ghci> takeWhile (/=' ') "This is a sentence"  
+"This"  
+```
+This is especially useful for working with inifinite lists. For example in order to grab the sum of all third powers that are under 10,000:
+```haskell
+ghci> sum $ takeWhile (<10000) $ map (^3) [1..]  
+53361
+```
+- `dropWhile` is similar, only it drops all elements while the predicate is true and then returns the rest of the list.
+```haskell
+ghci> dropWhile (/=' ') "This is a sentence"  
+" is a sentence"  
+ghci> dropWhile (<3) [1,2,2,2,3,4,5,4,3,2,1]  
+[3,4,5,4,3,2,1]  
+```
+- `sort` simply sorts a list. This only works if the type of elements in the list is in the `Ord` typeclass.
+- `group` takes a list and groups adjacent elements into sublists if they are equal
+- `isInfixOf` searches for a sublist within a list and returns `True` if the sublist is found
+- `isPrefixOf` and `isSuffixOf` search for a sublist at the beginning and at the end of a list, respectively.
+- `elem` and `notElem` check if an element is or isn't inside a list
+- `partition` takes a list and a predicate and returns a pair of lists. The first list in the result contains all the elements that satisfy the predicate, the second the elements that do not.
