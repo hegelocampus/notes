@@ -637,3 +637,18 @@ f . g = \x -> f (g x)
 ```
 - `f` must take as its parameter a value that has the same type as `g`'s return value. 
 - For example `negate . (* 3)` returns a function that takes a number, multiplies it by 3 and then negates it.
+- function composition is often used for making functions on the fly to pass to other functions. In this use case you _could_ use a lambda but function composition often allows for cleaner syntax.
+For example:
+```haskell
+map (\x -> negate (abs x)) [5,-3,-6,7,-3,2,-19,24] --Lambda syntax
+map (negate . abs) [5,-3,-6,7,-3,2,-19,24]  --Function composition syntax
+```
+- Function composition is right-associative so you can compose many functions at a time. For example, `f (g (z x))` is equivalent to `(f . g . z) x`
+An aditional example:
+```haskell
+map (\xs -> negate (sum (tail xs))) [[1..5],[3..6],[1..7]] --This can be turned into
+map (negate . sum . tail) [[1..5],[3..6],[1..7]] --This
+```
+## Modules
+### Loading Modules
+
