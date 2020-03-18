@@ -1,0 +1,12 @@
+# Proxies
+- A forward proxy is the main type of proxy, typically you can use the word "proxy" when you mean a "forward proxy"
+- Forward proxy - a server that sits in between a client or set of clients and another server or set of server. More importantly it acts on behalf of the client or clients.
+  - A client does a request that is meant for the server, that first goes to the forward proxy, which forwards the request to the server, **the response is then sent back through the proxy to the client.**
+  - VPNs essentially work in this way, although they are a little more complicated than this.
+- Reverse proxy - acts on behalf of a server in an interaction between a server and a client. When the client issues a request to the server, the request actually goes to the reverse proxy, the client doesn't know this, it thinks the request is sending the request straight to the server. The reverse proxy then forwards the request to the server, which then returns a response to the reverse proxy, which then forwards the request back to the client.
+  - These are very useful.
+  - You can use them to filter out requests that you want to ignore.
+  - You can use them to take care of logging for your server.
+  - You can use them for caching.
+  - You can use them as a load balancer (something to distribute the load over an array of servers).
+- Nginx can be used as a reverse proxy, its a good way to test out how a reverse proxy works.
