@@ -745,3 +745,25 @@ ghci> dropWhile (<3) [1,2,2,2,3,4,5,4,3,2,1]
 - `isPrefixOf` and `isSuffixOf` search for a sublist at the beginning and at the end of a list, respectively.
 - `elem` and `notElem` check if an element is or isn't inside a list
 - `partition` takes a list and a predicate and returns a pair of lists. The first list in the result contains all the elements that satisfy the predicate, the second the elements that do not.
+##### Data.Char
+- Also contains many helpful things, you should just check it out when you need to do something related to `Char` manipulation.
+##### Data.Map
+- These are dictionaries. They store key-value pairs in an unordered set.
+- Are internally implemented with trees
+- Make sure you do a `qualified` import of `Data.Map` because it has functions that clash with `Prelude` functions
+- The most common way to create a map is by using the `Data.Map`'s `fromList` function which creates a map from a list of pairs:
+```haskell
+Map.fromList [("betty","555-2938"),("bonnie","452-2928"),("lucille","205-2928")] 
+```
+- If there are any duplicate keys the duplicates are simply discarded.
+- `empty` represents an empty map. It takes no arguments and returns an empty map
+- `insert` takes a key, a value and a map, and returns a new map with all of the values of the old map but with the added new key-value pair.
+- `null` checks if a map is empty
+- `size` returns the number of key-value pairs in a map
+- `toList` is the inverse of `fromList`
+##### Data.Set
+- Used for working with unordered sets.
+- All elements are unique.
+- Are internally implemented with trees
+- Make sure you do a `qualified` import of `Data.Set` because it has functions that clash with `Prelude` functions
+- `fromList` creates a set of unique values from a list
