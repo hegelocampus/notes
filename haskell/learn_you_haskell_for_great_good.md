@@ -767,3 +767,13 @@ Map.fromList [("betty","555-2938"),("bonnie","452-2928"),("lucille","205-2928")]
 - Are internally implemented with trees
 - Make sure you do a `qualified` import of `Data.Set` because it has functions that clash with `Prelude` functions
 - `fromList` creates a set of unique values from a list
+#### Making your own modules
+- You can define everything you'd like to export with the following syntax:
+```haskell
+module Geometry
+( sphereVolume,
+sphereArea,
+cubeVolume,
+) where
+```
+- This would export the defined functions, `sphereVolume`, `sphereArea`, and `cubeVolume`.
