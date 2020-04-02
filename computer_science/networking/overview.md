@@ -38,3 +38,40 @@
 - End systems attached to the Internet provide a **socket interface** that specifies how a program running on one system asks the Internet infrastructure to deliver data a specific destination program running on another end system.
   - The socket interface is a set of rules that the sending program must follow so that the Internet can deliver the data to the destination program.
 ### What is a Protocol?
+- It takes two (or more) communicating entities running the same protocol to successfully accomplish a task.
+- All activity in the Internet that involves two or more communicating remote entities is governed by a protocol.
+***A protocol*** _defines the format and order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event._
+## The network edge
+- This is comprised of the end systems, which can be desktop computers, servers, and mobile devices. These are also referred to as _hosts_, because the host the applications.
+- Hosts themselves are divided into two categories: **clients** and **servers**
+  - Clients tend to be desktop and mobile PCs
+  - Servers tend to be more powerful machines that store and distribute Web pages, stream video, relay e-mail, and so on. Today most of these reside in large **data centers**.
+### Access Networks
+- **Access network**: The network that physically connects an end system to the first router (also known as the "edge router") on a path from the end system to any other distant end system.
+- **DSL**:
+  - Internet access is granted using the existing phone line.
+  - Different types of data are encoded at different frequencies:
+	- A high-speed downstream channel, in the 50kHz to 1MHz band
+	- A medium-speed upstream channel, in the 4kHz to 50kHz band
+	- A two-way telephone channel, in the 0 to 4kHz band
+  - Through transmitting the data at different frequencies the link behaves almost as if there were three separate links.
+- **Cable Internet access**:
+  - Makes use of the cable television company's existing cable television infrastructure.
+  - Fiber optics connect the cable head end to neighborhood-level junctions, from which traditional coaxial cable is then used to reach individual residences.
+  - Often referred to as hybrid fiber coax (HFC) because both fiber and coaxial cable are used.
+  - The signal is received in a residence by a **modem** which transforms the analog signal sent from the cable modems back into digital format. These modems divide the HFC network into two channels, a downstream and an upstream channel.
+  - One important characteristic is that it is a shared broadcast medium. Every packet sent by the head end travels downstream on every link to every home and every packet sent by a home travels on the upstream channel to the head end.
+  - Because the upstream channel is shared, a distributed multiple access protocol is needed to avoid collisions.
+- **Fiber to home (FTTH)**:
+  - Provides an optical fiber path from the CO directly to the home.
+  - There are several competing technologies for optical distribution from the CO to the homes.
+	- The simplest is called direct fiber. This is where one fiber leaves each home.
+	- It is more common for each fiber leaving the central distributer to be shared by many homes, with the signal is not split until the fiber gets relatively close to its destination. There are two main ways that this is achieved: active optical networks (AONs) and passive optical networks (PONs). AON is essentially switched Ethernet.
+- In areas where the above types of access networks are not available for whatever reason there are also **satellite links** and **dial-up** available, although these both have heavy limitations (slow speed and poor reliability).
+#### Ethernet and WiFi
+- A **local area network (LAN)** is often used to connect an end system to the edge router.
+- **Ethernet** is the most prevalent access technology for a LAN network.
+  - Ethernet users use twisted-pair copper wire to connect to an Ethernet switch. The switch, or network of switches is then connected into the larger Internet network.
+- **Wireless LAN**, through WiFi, is also incredibly common
+  - In this setup users transmit/receive packets to/from an access point that is connected into the residence/enterprise's network, which in turn is connected to the wired Internet.
+### Physical Media
