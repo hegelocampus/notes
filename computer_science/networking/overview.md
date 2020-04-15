@@ -75,3 +75,27 @@
 - **Wireless LAN**, through WiFi, is also incredibly common
   - In this setup users transmit/receive packets to/from an access point that is connected into the residence/enterprise's network, which in turn is connected to the wired Internet.
 ### Physical Media
+- The **physical medium** is what sits between the transmitter-receiver pair
+  - Some examples are twisted-pair copper wire, coaxial cable, multimode fiber-optic cable, terrestrial radio spectrum, and satellite radio spectrum.
+- Physical media fit into two major categories of **guided media** and **unguided media**
+  - Guided media: The waves are guided along a solid medium, e.g., fiber-optic cable, a twisted-pair copper wire
+  - Unguided media: The waves propagate in the atmosphere and in outer space, e.g., wireless LAN, a digital satellite channel
+##### Twisted-Pair Copper Wire
+- An **Unshielded twisted pair (UTP)** is commonly used for computer networks within a building. The rates for this medium range from 10 Mbps to 10Gbps (likely out of date)
+- Data rates depend on the thickness of the wire and the length of the wire
+##### Coaxial Cable
+- Similar to twisted pair, coaxial cable consists of two copper conductors, but  in this configuration the two conductors are concentric rather than parallel.
+- Achieves high data transmission rates.
+- Common in cable television systems.
+- Often used as a guided **shared medium**. Meaning a number of end systems can be connected directly to the cable, with each of the end systems receiving whatever is sent by the other end systems.
+##### Fiber Optics
+- A thin, flexible medium that conducts pulses of light, with each pulse representing a bit.
+- Can support tremendous bit rates
+- Immune to electromagnetic interference
+- Have very low signal attenuation up to 100 kilometers
+- Very hard to tap
+- The preferred  long-haul guided transmission media, particularly for overseas links
+- The optical devices, such as transmitters, receivers, and switches, that are needed to use fiber optic media are very expensive, hindering the adoption of fiber optics.
+##### Terrestrial Radio Channels
+- Carry signals in the electromagnetic spectrum
+- Require no physical wire to be installed
