@@ -1,0 +1,21 @@
+# What is Production Engineering?
+- At it's core it is being able to solve any problem that comes up.
+- It's sort of like a "glue" team that holds the entire product together, be it through programming, network engineering, or systems administration.
+- It used to be a not-programming role, but it has evolved into being a role where you're expected to diagnose and solve problems.
+  - It's sort of an evolution/product of SRE. At Facebook SRE was split into Site Reliability Operations and App Operations.
+	- AppOps worked on fixing breaking issues on servers.
+	  - This actually evolved into the Prod Engineer role
+	- SRO dealt with fixing servers physically going down
+	  - This disappeared as automation made it no longer necessary and teams were able to run their own operations.
+  - Production Engineering is the result of integrating actual engineers into the Ops team. Thus having engineers run operations.
+- Production Engineers focus on the following:
+  - Automation: Create programs that make it so humans don't need to be involved in doing tasks that need to be done regularly.
+	- Automate restarting failing servers.
+	- Automate scaling clusters.
+  - Tooling and Instrumentation: Create tools that can be used to diagnose problems (and give the engineers building the product access to those tools). Anyone should be able to troubleshoot a problem caused by something they wrote.
+	- Every company hits a point where they have too much data for a single human to be able to process on their own. Its a good idea to create tools to simplify this data and make it usable.
+	- A lot of this is creating new ways to visualize and process server data.
+  - Three core tasks over the life of a project:
+	- Bootstrap: Initial server setup
+	- Scale: Scale system for increased usage
+	- Awesomeize: Handle outliers and make everything always work
