@@ -1,0 +1,12 @@
+# System Calls
+- The Linux kernel has a robust codebase that is able to perform many actions:
+  - Read from a HDD
+  - Make network connections
+  - Create and kill processes
+  - Change file permissions
+  - Accept/read input from keyboards
+- The programs don't know how to do those actions, so they ask the kernel to do those tasks for them using **system calls**.
+  - During system calls the Linux kernel takes over, performs the needed task, and then returns the result to the program.
+- Every system call has a number, for example chmod is #90 on `x86_64`
+- You can see which system calls a program is using with `strace`
+- `strace ls /tm` will show you every system call `ls` uses. (Note you shouldn't use strace on a production database because it has high overhead.
