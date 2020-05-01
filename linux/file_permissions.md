@@ -1,4 +1,15 @@
 # File permissions
+- You can use `ls -l foo.txt` to see the permissions of the file `foo.txt`
+- File permissions are 12 bits
+## Binary explanation
+- `rw-` = 110 = 6 (from binary)
+- `r--` = 100 = 4 (from binary)
+- `r--` = 100 = 4 (from binary)
+So `chmod 644 file.txt` means change the permissions to `rw- r-- r--`
+## setuid
+- This affects executables
+- `ls -l /bin/ping` -> `rws r-x r-x root root`
+The `s` in the first group means `ping` __always__ runs as root
 ## The file mode will determine what people can do to the file
 - You can change this using `chmod` or `chown` to change the owner
 - You really need to understand binary to understand what is going on with the file permissions
