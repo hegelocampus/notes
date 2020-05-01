@@ -1,0 +1,11 @@
+# The `/proc` directory
+- Every process on Linux has a PID (process ID)
+- `/proc/PID` contains a lot of information about that process
+  - `/proc/PID/cmdline` - the command line arguments the process was started with
+  - `/proc/PID/environ` - all of the process's environment variables
+  - `/proc/PID/exe` - symlink to the process's binary. This works even if the binary has been deleted.
+  - `/proc/PID/status` - is the program running or asleep? How much memory is it using? And more.
+  - `/proc/PID/fd` - directory with every file the process has open. You can run `ls -l /proc/42/fd` to list all the files for process 42. These symlinks also work for deleted files and the files will still exist in this directory as long as the process is still running.
+  - `/proc/PID/stack` - the kernel's current stack for the process. This is useful if it's stuck in a system call.
+  - `/proc/PID/maps` - list of the process's memory maps. This is useful for seeing shared libraries, heap, anonymous maps, and more.
+- You can learn much more at the man page for `proc`
