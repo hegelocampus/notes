@@ -49,4 +49,25 @@
   - Ease of diagnosing and understanding problems
   - Ease of making updates or modifications
   - How simple it is to operate
+- The best way to avoid system downtime is through early detection of faults
+## Load balancing
+- The **Load Balancer (LB)** spreads the incoming traffic across the cluster of servers to improve responsiveness and availability of applications, websites, or databases.
+- The LB also keeps track of the status of all the resources while distributing requests. If a server is not available to take new requests, the LB will stop sending traffic to that server.
+- It will typically sit between the client and the server. It distributes the traffic using various weighted algorithms.
+- A LB reduces the loads of individual servers and prevents any one server from becoming a single point of failure. A LB will improve overall application availability and responsiveness.
+- LBs can be added at three places:
+  - Between the user and the web server
+  - Between the web servers and an internal platform layer (e.g., application servers or cache servers)
+  - Between the internal platform layer and the database
+```
+		   /-> Web Server -\	 /-> Application Server -\     /-> Database
+client->LB-					->LB-					      ->LB-
+		   \-> Web Server -/	 \-> Application Server -/     \-> Database
+```
+### Benefits
+- Users experience faster, uninterrupted service. If a server is struggling to complete their task, the task is passed to a more readily available server.
+- Service providers experience less downtime and higher throughput.
+- Load balancing makes it easier for system admins to handle incoming requests
+- Smart load balancers provide predictive analytics that predict traffic bottlenecks before they can happen.
+- System admins experience fewer failed or stressed components.
 
