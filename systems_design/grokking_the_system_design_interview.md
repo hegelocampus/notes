@@ -153,5 +153,13 @@ There are multiple constraints on the different operations that can be preformed
 	- There is a lot of load on a partition
   - In such cases we need to create more DB partitions or rebalance existing partitions
   - Rebalancing partitions means the partitioning scheme is changed and all existing data is moved to new locations. Doing this is a massive task that requires server downtime.
-	
+## Indexes	
+- Indexes are incredibly common in databases. They make fetching data much much faster and should be one of the first tools you turn to when you want increased database performance.
+- The goal of creating an index on a particular table is to make it faster to search through the table and find the row or rows that we want.
+- An index is, in essence, an additional table that has a search key that has a pointer to the associated row on the main table.
+  - The trick with indexes is that we must carefully consider how users will access the data because the search key must be the value that is used to lookup the row in order for the index to improve the read speeds.
+#### Write performance
+- While an index can dramatically speed up data retrieval, indexes can also slow down data insertion and update.
+- When adding rows or making updates to existing rows that have indexes, we not only have to write the data, but also have to update the index. This will decrease all insert, update, and delete operations for the table.
+- Because write performance is decreased when adding indexes. The addition of indexes should be avoided unless it you know the index will actually be used.
 
