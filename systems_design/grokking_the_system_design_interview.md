@@ -138,5 +138,20 @@ There are many different ways to break up a database into smaller databases. Her
 - **Key or Hash-based partitioning** - In this scheme, we apply a hash function to some key attributes of the entity we are storing; that yields the partition number. For example, if we have 100 DB servers and our ID is a numeric value that gets incremented by one each time a new record is inserted. This approach should ensure a uniform allocation of data among servers.
   - A drawback of this method is that adding new servers means changing the hash function, which would require redistribution of data and downtime. A workaround to this is Consistent Hashing.
 - **List partitioning** - In this scheme, each partition is assigned a list of values, whenever we want to add a new record, we will see which partition contains our key and then store it there. For example, you can decide that all users living in Iceland, Norway, Sweden, Finland, or Denmark will be stored in a partition for Nordic countries.
-- **Round-robin partitioning** - This scheme is very simple. With 'n' partitions, the `i` tuple is assigned to partition `(i mod n)`.
+- **Round-robin partitioning** - This scheme is very simple. With `n` partitions, the `i` tuple is assigned to partition `(i mod n)`.
 - **Composite partitioning** - In this scheme, we combine any of the above partitioning schemes to devise a new scheme. Consistent hashing could be considered a composite of hash and list partitioning where the hash reduces the key space to a size that cane be listed.
+### Common Problems
+There are multiple constraints on the different operations that can be preformed. These tend to be due to the fact that operations across multiple tables or multiple rows in the same table will no longer run on the same server.
+- **Joins and Denormalization** - Performing joins on a database which is running on one server is easy, but once a database is partitioned it can often no longer be feasible to perform such joins. Joins that span database partitions will not be performance efficient since data has to be compiled from multiple servers.
+  - A common workaround is to denormalize the database so that queries that previously required joins can be performed from a single table
+- **Referential integrity** - Just like how performing a cross-partition query on a partitioned database is not feasible, trying to enforce data integrity constrains (such as foreign keys) in a partitioned database can be made much more difficult. Most RDBMS do not support foreign key constrains across databases on different servers.
+  - This means that applications that require referential integrity on a partitioned database often have to enforce it in the application code.
+  - It is often the case that in partitioned databases, the applications have to run regular SQL jobs to clean up dangling references.
+- **Rebalancing** 
+  - There are many reasons why the partitioning may have to be changed over time:
+	- The data distribution is not uniform
+	- There is a lot of load on a partition
+  - In such cases we need to create more DB partitions or rebalance existing partitions
+  - Rebalancing partitions means the partitioning scheme is changed and all existing data is moved to new locations. Doing this is a massive task that requires server downtime.
+	
+
