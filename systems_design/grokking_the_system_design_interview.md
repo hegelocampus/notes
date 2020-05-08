@@ -179,3 +179,34 @@ There are multiple constraints on the different operations that can be preformed
   - Plays a key role in removing the single points of failure in the system. If we have two instances of a service running in production and one fails, the system can failover to the other one.
 - **Replication** means sharing information to ensure consistency between redundant resources. This is done to improve reliability, fault-tolerance, or accessibility.
   - Commonly used in many database management systems (DBMS). There is typically a master-slave relationship between the original and the copies, where the master receives the updates first and they are passed on to the slaves.
+
+## SQL vs. NoSQL
+- **SQL** or **relational databases** are **structured** and have predefined schemas
+  - Store data in rows and columns. Where each row contains all the information for one entity and each column contains all the separate data points.
+  - Some popular examples are MySQL, Oracle, MS SQL Server, SQLite, PostgreSQL, and MariaDB
+- **NoSQL** or **non-relational databases** are **unstructured,** distributed, and have a dynamic schema. These come in a few common forms:
+  - **Key-Value stores:** Data is stored in an array of key-value pairs, where the key is the attribute name that points to the value.
+	- Examples are Redis, Voldemort, and Dynamo.
+  - **Document Databases:** Data is stored in documents and these documents are grouped together into collections. Each document can be structured in a completely different way.
+	- Examples are CouchDB and MongoDB.
+  - **Wide-Column Databases:** Instead of tables, these databases use column families, which are containers for rows. Unlike relational databases, all the columns aren't defined up front and each row doesn't have to have the same number of columns. These are best suited for analyzing large datasets.
+	- Examples are Cassandra and HBase.
+  - **Graph Databases:** These databases are used to store data whose relations are best represented using a graph. Data is saved in a typical graph structure with nodes, properties, and lines.
+	- Examples are Neo4J and InfiniteGraph.
+### High level differences between SQL and NoSQL
+- **Storage:** 
+  - SQL stores data in tables which have columns that represent data points about the entries.
+  - NoSQL have different data storage models depending on the implementation used.
+- **Schema:** 
+  - In SQL, each record conforms to a fixed schema. The schema can be altered after its creation but that would require modifying the entire dataset, thus requiring downtime.
+  - NoSQL has dynamic schemas that can change as needed. Columns can be added on the fly and each row doesn't need to have the exact same data types of any of the other rows.
+- **Querying:** 
+  - SQL databases use SQL as their querying language. It is incredibly powerful and generally very good.
+  - In a NoSQL the queries are focused on a collection of documents. The querying language used by NoSQL is sometime called UnQL (Unstructured Query Language). Different NoSQL database have different syntax for making queries.
+- **Scalability:** 
+  - SQL databases are vertically scalable in most common situations. It is possible to scale a SQL database across multiple servers, but its a complicated process that requires a lot of time.
+  - NoSQL databases horizontally scale incredibly well, making it very simple to add additional servers to improve system performance.
+- **Reliability or ACID Compliancy (Atomicity, Consistency, Isolation, Durability):** 
+  - SQL databases are almost always ACID compliant. So SQL databases tend to have far better data reliability and safety.
+  - NoSQL databases tend to sacrifice ACID compliance for performance and scalability.
+### SQL vs. NoSQL - How to decide which one to use
