@@ -62,3 +62,25 @@ Here it is again in a little more detail:
 - Once the kernel has been loaded and has completed its initialization process, it creates a complement of "spontaneous" processes in user space.
   - These are called "spontaneous" because the kernel starts them autonomously.
   - Most of these processes are really part of the kernel implementation and don't correspond to programs in the filesystem
+  - You can find these in the `ps` listings by looking for low PIDs with brackets around their names.
+  - The exception to this is the system management daemon, which has the PID of 1. It typically runs under the name **init**
+### Responsibilities of init
+- **init** has the overarching goal to make sure the system runs the right complement of services and daemons at any given time.
+- init maintains a notion of the mode in which the system should be operating. Here are some commonly defined modes:
+  - **Single-user mode** - Only a minimal set of filesystems is mounted, no services are running, and root shell is started in the console.
+  - **Multiuser mode** - All customary filesystems are mounted and all configuration network services have been started, along with a window system and graphical login manager.
+  - **Server mode** - Similar to multiuser mode, but with no GUI
+- Every mode has a defined set of system services, the init daemon starts or stops those services as needed
+- init also takes care of a lot of other startup chores that come with transitioning from bootstrapping to multiuser mode. These may include:
+  - Setting the name of the computer
+  - Setting the time zone
+  - Checking disks with `fsck`
+  - Mounting filesystems
+  - Removing old files from the `/tmp` directory
+  - Configuring network interfaces
+  - Configuring packet filters
+  - Stating up other daemons and network services
+### Implementation of init
+There are three very different flavors of system management processes in widespread use:
+- An init styled after the init form AT&T's System V UNIX. This is referred to as "traditional init." This was the most used init system prior to `systemd`
+
