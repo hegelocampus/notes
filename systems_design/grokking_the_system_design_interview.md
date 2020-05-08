@@ -162,4 +162,20 @@ There are multiple constraints on the different operations that can be preformed
 - While an index can dramatically speed up data retrieval, indexes can also slow down data insertion and update.
 - When adding rows or making updates to existing rows that have indexes, we not only have to write the data, but also have to update the index. This will decrease all insert, update, and delete operations for the table.
 - Because write performance is decreased when adding indexes. The addition of indexes should be avoided unless it you know the index will actually be used.
+## Proxies
+- A **proxy server** is an intermediate server between the client and the back-end server. A client connects to the proxy servers in order to make a request for a resource.
+- Proxies are typically used to filter requests, log requests, or sometimes transform requests. Another advantage of a proxy server is that its cache can serve a lot of requests. If multiple clients attempt to access a particular resource, the proxy server can cache it and serve it to the clients without going to the remote server.
+### Proxy Server Types
+#### Open Proxy
+- An open proxy is a proxy that is accessible by any Internet user. A proxy is typically only accessible within a network group, an open proxy is open to any user on the Internet to use.
+- Two main types:
+  - Anonymous Proxy - This proxy reveals its identity as a server but does not disclose the initial IP address. Thus it masks the initial IP address of the user.
+  - Transparent Proxy - This proxy server identifies itself and the original IP address of the client is inserted into the HTTP header. The benefit of this proxy type is that it is able to cache websites.
+#### Reverse Proxy
+- A reverse proxy retrieves resources on behalf of a client from one or more servers. The resources are then returned to the client as if they were sent from the proxy server itself. Load balancers are an example of a reverse proxy.
 
+## Redundancy and Replication
+- **Redundancy** is the duplication of critical components or functions of a system with the intention of increasing the reliability of the system or improve actual system performance.
+  - Plays a key role in removing the single points of failure in the system. If we have two instances of a service running in production and one fails, the system can failover to the other one.
+- **Replication** means sharing information to ensure consistency between redundant resources. This is done to improve reliability, fault-tolerance, or accessibility.
+  - Commonly used in many database management systems (DBMS). There is typically a master-slave relationship between the original and the copies, where the master receives the updates first and they are passed on to the slaves.
