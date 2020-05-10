@@ -81,6 +81,42 @@ Here it is again in a little more detail:
   - Configuring packet filters
   - Stating up other daemons and network services
 ### Implementation of init
-There are three very different flavors of system management processes in widespread use:
-- An init styled after the init form AT&T's System V UNIX. This is referred to as "traditional init." This was the most used init system prior to `systemd`
+- There are three very different flavors of system management processes in widespread use:
+  - An init styled after the init form AT&T's System V UNIX. This is referred to as **traditional init**. This was the most used init system prior to `systemd`
+  - An init variant that derives from BSD UNIX and is used on most BSD-based systems. This is typically referred to as **BSD init**. Very simple in comparison to SysV-style init.
+  - The modern implementation of init called **systemd**, which aims to be a one-stop-shopping for all daemon and state related issues. It thus tends to do much more than the historic implementations of init. Somewhat controversial because people think it does too much. Almost all major Linux distros have adopted systemd.
+### Traditional init
+- In traditional init, system modes are known as **run levels**
+- Has a number of notable shortcomings (compared to systemd):
+  - Is not really powerful enough to handle the needs of a modern system on its own. When it is used it typically has a set of secondary scripts that perform the actual hard work of changing run levels and letting administrators make config changes
+  - That secondary script layer maintains a third layer of daemon and system specific scripts. This results in a pretty hackish and unsightly way to implement init.
+  - The system has no general model of dependencies among services, so all startups and takedowns must be run in a numeric order that's maintained by the system admin. Because of this, it is also **impossible to execute actions in parallel**.
+### systemd
+- **systemd** takes all the init features that, were implemented in traditional init with sticky tape, shell script hacks, and admin pain, and formalizes them into a unified field theory of how services should be configured, accessed, and managed.
+- systemd defines a robust dependency model, not only among its services but also its "targets," which are systemd's term for the operating modes (traditional init's run levels).
+- systemd manages the following:
+  - processes in parallel
+  - network connections (networkd)
+  - kernel log entries (journald)
+  - logins (logind)
+- There are people that don't like systemd, they say that it is fundamentally opposed to the UNIX philosophy, which is to keep system components small, simple, and modular. They also argue that because of systemd is doing so much it leads to complexity, introduces security weaknesses, and muddies the distinction between the OS platform and the services that run on top of it. Despite this systemd is very heavily used and will likely be the most popular init option for the foreseeable future.
 
+## Reboot and Shutdown Procedures
+- UNIX and Linux machines have historically been touchy about how they were shutdown, modern systems don't have nearly as many problems because of modern filesystems, but its still a good idea to shut down a machine nicely whenever possible.
+- The `halt` command performs the essential duties required for shutting down the system.
+  - `halt` preforms the following services:
+	- logs the shutdown
+	- kills nonessential processes
+	- flushes cached filesystem blocks to disk
+	- halts the kernel
+  - `halt -p` actually powers down the system
+- `reboot` is essentially the same as `halt` but it causes the machine to reboot rather than halting
+- `shutdown` is a layer over halt and reboot and provides a scheduled shutdown, including a warning to any logged-in users. It is now largely obsolete unless you have a multi-user system.
+
+## Stratagems for a Nonbooting System
+- There are three basic approaches to solving this problem, here they are in a rough order of desirability:
+  - Don't debug; just restore to a known-good state.
+  - Bring the system up just enough to run a shell, and debug interactively.
+  - Boot a separate system image, mount the sick system's filesystems, and investigate from there.
+- The best way will typically be to boot to a shell, but restoring to a known-good state is great if you have a ultra-recent full backup.
+- Booting to shell is known as **single-user** or **rescue mode**. Systems using systemd also have the even more primitive option of **emergency mode** which does the absolute minimum in preparation before starting the shell.
