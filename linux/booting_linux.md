@@ -120,3 +120,4 @@ Here it is again in a little more detail:
   - Boot a separate system image, mount the sick system's filesystems, and investigate from there.
 - The best way will typically be to boot to a shell, but restoring to a known-good state is great if you have a ultra-recent full backup.
 - Booting to shell is known as **single-user** or **rescue mode**. Systems using systemd also have the even more primitive option of **emergency mode** which does the absolute minimum in preparation before starting the shell.
+- If your system is already running, you can bring it down to single-user mode with a telinit (traditional init) or systemctl command
