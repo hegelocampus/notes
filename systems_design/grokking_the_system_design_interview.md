@@ -210,3 +210,23 @@ There are multiple constraints on the different operations that can be preformed
   - SQL databases are almost always ACID compliant. So SQL databases tend to have far better data reliability and safety.
   - NoSQL databases tend to sacrifice ACID compliance for performance and scalability.
 ### SQL vs. NoSQL - How to decide which one to use
+- Use SQL if:
+  - **You need ACID compliance**. This will typically be a strong preference in E-commerce and financial applications.
+  - **Your data is structured and unchanging**. If you expect that your data will never change form, its safe to use a SQL database because you won't have to deal with server down time that comes with changing the table in a SQL database.
+- Use NoSQL if:
+  - **You need to store large volumes of data with little to no structure.**
+  - **You want to make the most of cloud computing and storage**. Cloud-based storage is a great cost-saving solution, but it is much safer to use with NoSQL because vertical scaling is more restricted in a cloud-based solution.
+  - **You favor rapid development**. Working with a relational database will often slow you down (in the short term) as you have to make frequent updates to the data structure.
+## CAP Theorem
+- **CAP theorem** states that it is impossible for a distributed system to simultaneously provide more than two out of three of the following guarantees:
+  - **Consistency** - All nodes see the same data at the same time. Achieved by updating several nodes before allowing further reads.
+  - **Availability** - Every request gets a response on success/failure. Availability is achieved by replicating the data across different servers.
+  - **Partition tolerance** - The system continues to work despite message loss or partial failure. A system that is partition-tolerant can sustain any amount of network failure that doesn't result in a failure of the entire network.
+- Combinations:
+  - **Availability + Consistency** - RDBMS
+  - **Availability + Partition Tolerance** - Cassandra, CouchDB
+  - **Consistency + Partition Tolerance** - BigTable, MongoDB, HBase
+- This is generally almost the first thing you should consider when designing a system.
+## Consistent Hashing
+- **Distributed Hash Table (DHT)** is one of the fundamental components used in distributed scalable systems.
+- Hash tables need a key, a value, and a hash function where the hash function maps the key to a location where the vale is stored.
