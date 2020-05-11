@@ -230,3 +230,21 @@ There are multiple constraints on the different operations that can be preformed
 ## Consistent Hashing
 - **Distributed Hash Table (DHT)** is one of the fundamental components used in distributed scalable systems.
 - Hash tables need a key, a value, and a hash function where the hash function maps the key to a location where the vale is stored.
+- A simple hash function like `key % n` may make sense at first but it has two major drawbacks of **not being horizontally scalable and is not able to be load balanced.**
+### What is Consistent Hashing?
+- **Consistent hashing** allows us to distribute data across a cluster in such a way that will minimize reorganization when nodes are added or removed. Because of this is makes scaling up and down much easier.
+- When the hash table is resized, only `k/n` keys need to be remapped where `k` is the total number of keys and `n` is the total number of servers. (This is **much** better than a simple hashing function that uses `mod`, for example, which would have need all of its keys remapped)
+- In consistent hashing, objects are mapped to the same host if possible. When a host is removed from the system, the objects on that host are shared by other hosts; when a new host is added, it takes its share form a few hosts without touching other's shares.
+### How does it work?
+- Like any typical hash function, consistent hashing maps a key to an integer.
+- Here's how it works:
+  - Given a list of cache servers, hash them to integers in the hash range.
+  - To map a key to a server:
+    - Hash it to a single integer
+    - Move clockwise on the ring (essentially a looping array containing all values from hash-start to hash-end) until finding the first cache it encounters.
+    - That cache is set to be the one that contains the key.
+  - To add a new server, say D, keys that were originally residing at C will be split, with some shifted to D, while other keys will not be touched
+  ```
+  [(A, 60), (B, 128), (C, 200)] + New Server D -> [(A, 60), (B, 128), (D, 160), (C, 200)]
+  ```
+  - In order to remove a server or a server fails, for example A, all the keys that were originally mapped to A will fall back onto B. Only the keys that need to be moved to B will be affected, all others will remain untouched.
