@@ -227,6 +227,7 @@ There are multiple constraints on the different operations that can be preformed
   - **Availability + Partition Tolerance** - Cassandra, CouchDB
   - **Consistency + Partition Tolerance** - BigTable, MongoDB, HBase
 - This is generally almost the first thing you should consider when designing a system.
+
 ## Consistent Hashing
 - **Distributed Hash Table (DHT)** is one of the fundamental components used in distributed scalable systems.
 - Hash tables need a key, a value, and a hash function where the hash function maps the key to a location where the vale is stored.
@@ -248,3 +249,19 @@ There are multiple constraints on the different operations that can be preformed
   [(A, 60), (B, 128), (C, 200)] + New Server D -> [(A, 60), (B, 128), (D, 160), (C, 200)]
   ```
   - In order to remove a server or a server fails, for example A, all the keys that were originally mapped to A will fall back onto B. Only the keys that need to be moved to B will be affected, all others will remain untouched.
+
+## Long-Polling vs. WebSockets vs Server-Sent Events
+- Its probably a good idea to conceptually start with a basic regular HTTP request:
+  - The client opens a connection and requests data form the server
+  - The server calculates the response.
+  - The server sends the response back to the client on the opened request.
+### Ajax polling
+- Polling is a standard technique used by the vast majority of AJAX applications.
+- In polling **the client repeatedly polls (or requests) a server for data.** The client makes the request and waits for the server to respond. If no data is sent, an empty response is returned.
+- Process:
+  - The client opens a connection and requests data from the server using regular HTTP.
+  - The requested webpage sends requests to the server at regular intervals (e.g., 0.5 seconds).
+  - The server calculates the response and sends it back, just like regular HTTP traffic.
+  - The client repeats the above three steps periodically to get updates from the server.
+- The biggest weakness of polling is that the client has to keep asking the server for any new data. This results in a lot of empty responses, creating HTTP overhead.
+### HTTP Long-Polling
