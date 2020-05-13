@@ -73,6 +73,10 @@
 	* [File Permissions](/linux/file_perssions.md)
   * System Design
 	* [Overview](/systems_design/overview.md)
+	* Grokking The SDI
+	  * [Grokking The SDI](/systems_design/grokking_the_sdi/grakking_the_sdi.md)
+	  * Examples
+		* [URL shortening system](/systems_design/grokking_the_sdi/examples/url_shortening_service.md)
 	* [Client Server Model](/systems_design/client_server_model.md)
 	* [Network Protocols](/systems_design/network_protocols.md)
 	* [Latency and Throughput](/systems_design/latency_and_throughput.md)
