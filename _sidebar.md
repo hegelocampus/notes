@@ -79,5 +79,10 @@
 		* [URL shortening system](/systems_design/grokking_the_sdi/examples/url_shortening_service.md)
 	* [Client Server Model](/systems_design/client_server_model.md)
 	* [Network Protocols](/systems_design/network_protocols.md)
-	* [Latency and Throughput](/systems_design/latency_and_throughput.md)
 	* [Storage](/systems_design/storage.md)
+	* [Latency and Throughput](/systems_design/latency_and_throughput.md)
+	* [Availability](/systems_design/availability.md)
+	* [Caching](/systems_design/caching.md)
+	* [Proxies](/systems_design/proxies.md)
+	* [Load Balancers](/systems_design/load_balancers.md)
+
