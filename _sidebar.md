@@ -74,7 +74,7 @@
   * System Design
 	* [Overview](/systems_design/overview.md)
 	* Grokking The SDI
-	  * [Grokking The SDI](/systems_design/grokking_the_sdi/grakking_the_sdi.md)
+	  * [Grokking The SDI](/systems_design/grokking_the_sdi/grokking_the_sdi.md)
 	  * Examples
 		* [URL shortening system](/systems_design/grokking_the_sdi/examples/url_shortening_service.md)
 	* [Client Server Model](/systems_design/client_server_model.md)
