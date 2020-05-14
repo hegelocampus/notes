@@ -45,7 +45,7 @@ markTweetFavorite(user_id, tweet_id, timestamp, ...)
 - You should be able to identify various entities of the system, how they will interact with each other, and different aspects of data management like storage, transportation, encryption, etc.
 - Here are some entries for our Twitter-like service:
   - `User`: `UserId`, `Name`, `Email`, `DoB`, `CreationData`, `LastLogin`, etc.
-  - `Tweet`: `TweetId`, `Concent`, `TweetLocation`, `NumberOfLikes`, `TimeStamp`, etc.
+  - `Tweet`: `TweetId`, `Content`, `TweetLocation`, `NumberOfLikes`, `TimeStamp`, etc.
   - `UserFollow`: `UserId1`, `UserId2`
   - `FavoriteTweet`: `UserId`, `TweetId`, `Timestamp`
 - During this section you should clarify
