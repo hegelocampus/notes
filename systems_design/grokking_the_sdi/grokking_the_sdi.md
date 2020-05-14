@@ -9,6 +9,7 @@
 - A scalable system aims to achieve increased requirements without performance loss
 - Generally the performance of a system, even in systems that are designed to be scalable, tends to degrade over time.
 - A scalable system avoids performance loss through attempting to balance the needed load across all participating nodes evenly
+
 #### Horizontal vs. Vertical scaling
 - **Horizontal scaling:** adding more servers
   - Able to scale dynamically by simply adding or removing servers from an existing pool
@@ -28,6 +29,7 @@
   - Any system that operational for the majority of the time with very little downtime for maintenance can be said to be highly available
   - Takes into account maintainability, repair time, spares availability, and other logistical considerations.
 - Reliability is availability over time considering possible real-world conditions that can occur.
+
 #### Reliability vs. Availability
 - If a system is reliable, it is available.
 - If a system is available it is **not necessarily reliable**
@@ -50,6 +52,7 @@
   - Ease of making updates or modifications
   - How simple it is to operate
 - The best way to avoid system downtime is through early detection of faults
+
 ## Load balancing
 - The **Load Balancer (LB)** spreads the incoming traffic across the cluster of servers to improve responsiveness and availability of applications, websites, or databases.
 - The LB also keeps track of the status of all the resources while distributing requests. If a server is not available to take new requests, the LB will stop sending traffic to that server.
@@ -64,12 +67,14 @@
 client->LB-					->LB-					      ->LB-
 		   \-> Web Server -/	 \-> Application Server -/     \-> Database
 ```
+
 ### Benefits
 - Users experience faster, uninterrupted service. If a server is struggling to complete their task, the task is passed to a more readily available server.
 - Service providers experience less downtime and higher throughput.
 - Load balancing makes it easier for system admins to handle incoming requests
 - Smart load balancers provide predictive analytics that predict traffic bottlenecks before they can happen.
 - System admins experience fewer failed or stressed components.
+
 ### Load Balancing Algorithms
 - How does the load balancer choose the backend server to route a request to?
   - First ensure that the server they choose is actually responding appropriately to requests.
@@ -82,6 +87,7 @@ client->LB-					->LB-					      ->LB-
   - **Round Robin Method** - Directs traffic sequentially through a list of servers. Most useful when the servers are of equal specification and there are not many persistent connections.
   - **Weighted Round Robin Method** - Each server is assigned a weight. Servers with higher weight receive new connections before those with less weight. Thus servers with higher weights get more connections than those with less weights.
   - **IP Hash Method** - A hash of the IP address of the client is calculated to redirect to a particular server.
+  
 ### Redundant Load Balancers
 - Because the load balancer can be a single point of failure, this is oven overcome by adding a second load balancer, forming a cluster of load balancers that have their health monitored. In the event that the main load balancer fails, the auxiliary load balancer can take over.
 
@@ -89,11 +95,13 @@ client->LB-					->LB-					      ->LB-
 - Caching enables the system to make vastly better use of the resources it already has, as well as making otherwise unattainable product requirements feasible.
 - Recently fetched data is likely to be requested again, so it is often beneficial to store that data in memory so it can be subsequently fetched faster.
 - Caches can exist at all levels in architecture, but are **often found at the level nearest to the front end** where they are implemented to return data quickly without taxing downstream levels.
+
 ### Application server cache
 - Placing a cache on a request layer node enables the local storage of response data.
 - Each time a request is made, the node quickly returns local cached data if it exists. It is only when the data is not cached that the requesting node will query the data from the database
 - This cache can be located both in memory (very fast) and on the node's local disk (faster than network storage).
 - If you have multiple notes each node can still have its own cache, However, depending on the load balancer's distribution method this may lead to a cache not being utilized so this should be taken into consideration when choosing the cache's location and the distribution method.
+
 ### Content Distribution Network (CDN)
 - These are useful for sites serving large amounts of static media.
 - In a typical CDN: 
@@ -101,6 +109,7 @@ client->LB-					->LB-					      ->LB-
   - The CDN will serve that content if it has it locally available
   - If it isn't available, the CDN will query the back-end servers for the file, cache it locally, and serve it to the requesting user.
 - If the system isn't yet large enough to have its own CDN, you can make the future transition easier by serving the static media off a separate subdomain (e.g., static.foo.com). This way you will simply have to have the DNS lookup changed for the subdomain when it becomes feasible to add a CDN.
+
 ### Cache Invalidation
 - Caching does require some maintenance in order to keep the content up to date with the source of truth (e.g., the database). 
 - **If the data is modified in the database it should be invalidated in the cache.** The process by which this happens is **cache invalidation**
@@ -114,6 +123,7 @@ client->LB-					->LB-					      ->LB-
   - **Write-back cache** - data is written to cache alone and completion is immediately confirmed to the client. The write to permanent storage is done after a specified interval or once certain conditions have been met.
 	- This results in low latency and high throughput for write-intensive applications.
 	- However there is a major downside with an increased risk of data loss if the cache were to fail before the data can be backed up to the database.
+	
 ### Cache eviction policies
 There are many possible eviction policies but here are some of the most common choices:
 - **First In First Out (FIFO)**: The cache evicts the first block accessed first without any regard to how often or how many times it was accessed.
@@ -127,6 +137,7 @@ There are many possible eviction policies but here are some of the most common c
 - **Data partitioning** is a technique to break up a big database into many smaller components. 
 - This functions through splitting up a DB/table across multiple machines in order to improve the manageability, performance, availability, and load balancing of an application.
 - The justification is that after a certain scale point, it is simply much cheaper to scale horizontally vs. vertically.
+
 ### Partitioning Methods
 There are many different ways to break up a database into smaller databases. Here are some of the most popular schemes:
 - **Horizontal partitioning** - In this scheme different rows go into different tables. For example if you were to have a table that stored locations, using this scheme you could store ZIP codes less than 10000 and greater than 10000 in separate tables. Horizontal partitioning is also known as **Data Sharding**
@@ -134,12 +145,14 @@ There are many different ways to break up a database into smaller databases. Her
 - **Vertical partitioning** - In this scheme we divide the data using a specific feature in their own server. For example, if we are building an Instagram like application - where we need to store data related to users, photos they upload, and people they follow - we can decide to place user profile information on one DB server, their friend list on another, and photos on a third server. Vertical partitioning is simple and typically has a low impact on the application.
   - The biggest drawback is that if our application experiences additional growth, then it may become necessary to further partition a feature specific DB across various servers (e.g., it would not be feasible for a single server to handle all photo requests for all users).
 - **Directory Based Partitioning** - In this scheme a lookup service is created which is aware of the current partitioning schema and abstracts it away from the DB access code. Thus, in order to find out where a particular data entity resides, we query the directory server that holds the mapping between each tuple key to its DB server. This approach means we can perform tasks like anding servers to the DB pool or change our partition scheme without having an impact on the application.
+
 ### Partitioning Criteria
 - **Key or Hash-based partitioning** - In this scheme, we apply a hash function to some key attributes of the entity we are storing; that yields the partition number. For example, if we have 100 DB servers and our ID is a numeric value that gets incremented by one each time a new record is inserted. This approach should ensure a uniform allocation of data among servers.
   - A drawback of this method is that adding new servers means changing the hash function, which would require redistribution of data and downtime. A workaround to this is Consistent Hashing.
 - **List partitioning** - In this scheme, each partition is assigned a list of values, whenever we want to add a new record, we will see which partition contains our key and then store it there. For example, you can decide that all users living in Iceland, Norway, Sweden, Finland, or Denmark will be stored in a partition for Nordic countries.
 - **Round-robin partitioning** - This scheme is very simple. With `n` partitions, the `i` tuple is assigned to partition `(i mod n)`.
 - **Composite partitioning** - In this scheme, we combine any of the above partitioning schemes to devise a new scheme. Consistent hashing could be considered a composite of hash and list partitioning where the hash reduces the key space to a size that cane be listed.
+
 ### Common Problems
 There are multiple constraints on the different operations that can be preformed. These tend to be due to the fact that operations across multiple tables or multiple rows in the same table will no longer run on the same server.
 - **Joins and Denormalization** - Performing joins on a database which is running on one server is easy, but once a database is partitioned it can often no longer be feasible to perform such joins. Joins that span database partitions will not be performance efficient since data has to be compiled from multiple servers.
@@ -153,11 +166,13 @@ There are multiple constraints on the different operations that can be preformed
 	- There is a lot of load on a partition
   - In such cases we need to create more DB partitions or rebalance existing partitions
   - Rebalancing partitions means the partitioning scheme is changed and all existing data is moved to new locations. Doing this is a massive task that requires server downtime.
+
 ## Indexes	
 - Indexes are incredibly common in databases. They make fetching data much much faster and should be one of the first tools you turn to when you want increased database performance.
 - The goal of creating an index on a particular table is to make it faster to search through the table and find the row or rows that we want.
 - An index is, in essence, an additional table that has a search key that has a pointer to the associated row on the main table.
   - The trick with indexes is that we must carefully consider how users will access the data because the search key must be the value that is used to lookup the row in order for the index to improve the read speeds.
+
 #### Write performance
 - While an index can dramatically speed up data retrieval, indexes can also slow down data insertion and update.
 - When adding rows or making updates to existing rows that have indexes, we not only have to write the data, but also have to update the index. This will decrease all insert, update, and delete operations for the table.
@@ -165,12 +180,14 @@ There are multiple constraints on the different operations that can be preformed
 ## Proxies
 - A **proxy server** is an intermediate server between the client and the back-end server. A client connects to the proxy servers in order to make a request for a resource.
 - Proxies are typically used to filter requests, log requests, or sometimes transform requests. Another advantage of a proxy server is that its cache can serve a lot of requests. If multiple clients attempt to access a particular resource, the proxy server can cache it and serve it to the clients without going to the remote server.
+
 ### Proxy Server Types
 #### Open Proxy
 - An open proxy is a proxy that is accessible by any Internet user. A proxy is typically only accessible within a network group, an open proxy is open to any user on the Internet to use.
 - Two main types:
   - Anonymous Proxy - This proxy reveals its identity as a server but does not disclose the initial IP address. Thus it masks the initial IP address of the user.
   - Transparent Proxy - This proxy server identifies itself and the original IP address of the client is inserted into the HTTP header. The benefit of this proxy type is that it is able to cache websites.
+
 #### Reverse Proxy
 - A reverse proxy retrieves resources on behalf of a client from one or more servers. The resources are then returned to the client as if they were sent from the proxy server itself. Load balancers are an example of a reverse proxy.
 
@@ -193,6 +210,7 @@ There are multiple constraints on the different operations that can be preformed
 	- Examples are Cassandra and HBase.
   - **Graph Databases:** These databases are used to store data whose relations are best represented using a graph. Data is saved in a typical graph structure with nodes, properties, and lines.
 	- Examples are Neo4J and InfiniteGraph.
+
 ### High level differences between SQL and NoSQL
 - **Storage:** 
   - SQL stores data in tables which have columns that represent data points about the entries.
@@ -209,6 +227,7 @@ There are multiple constraints on the different operations that can be preformed
 - **Reliability or ACID Compliancy (Atomicity, Consistency, Isolation, Durability):** 
   - SQL databases are almost always ACID compliant. So SQL databases tend to have far better data reliability and safety.
   - NoSQL databases tend to sacrifice ACID compliance for performance and scalability.
+  
 ### SQL vs. NoSQL - How to decide which one to use
 - Use SQL if:
   - **You need ACID compliance**. This will typically be a strong preference in E-commerce and financial applications.
@@ -217,6 +236,7 @@ There are multiple constraints on the different operations that can be preformed
   - **You need to store large volumes of data with little to no structure.**
   - **You want to make the most of cloud computing and storage**. Cloud-based storage is a great cost-saving solution, but it is much safer to use with NoSQL because vertical scaling is more restricted in a cloud-based solution.
   - **You favor rapid development**. Working with a relational database will often slow you down (in the short term) as you have to make frequent updates to the data structure.
+
 ## CAP Theorem
 - **CAP theorem** states that it is impossible for a distributed system to simultaneously provide more than two out of three of the following guarantees:
   - **Consistency** - All nodes see the same data at the same time. Achieved by updating several nodes before allowing further reads.
@@ -232,10 +252,12 @@ There are multiple constraints on the different operations that can be preformed
 - **Distributed Hash Table (DHT)** is one of the fundamental components used in distributed scalable systems.
 - Hash tables need a key, a value, and a hash function where the hash function maps the key to a location where the vale is stored.
 - A simple hash function like `key % n` may make sense at first but it has two major drawbacks of **not being horizontally scalable and is not able to be load balanced.**
+
 ### What is Consistent Hashing?
 - **Consistent hashing** allows us to distribute data across a cluster in such a way that will minimize reorganization when nodes are added or removed. Because of this is makes scaling up and down much easier.
 - When the hash table is resized, only `k/n` keys need to be remapped where `k` is the total number of keys and `n` is the total number of servers. (This is **much** better than a simple hashing function that uses `mod`, for example, which would have need all of its keys remapped)
 - In consistent hashing, objects are mapped to the same host if possible. When a host is removed from the system, the objects on that host are shared by other hosts; when a new host is added, it takes its share form a few hosts without touching other's shares.
+
 ### How does it work?
 - Like any typical hash function, consistent hashing maps a key to an integer.
 - Here's how it works:
@@ -255,6 +277,7 @@ There are multiple constraints on the different operations that can be preformed
   - The client opens a connection and requests data form the server
   - The server calculates the response.
   - The server sends the response back to the client on the opened request.
+
 ### Ajax polling
 - Polling is a standard technique used by the vast majority of AJAX applications.
 - In polling **the client repeatedly polls (or requests) a server for data.** The client makes the request and waits for the server to respond. If no data is sent, an empty response is returned.
@@ -264,6 +287,7 @@ There are multiple constraints on the different operations that can be preformed
   - The server calculates the response and sends it back, just like regular HTTP traffic.
   - The client repeats the above three steps periodically to get updates from the server.
 - The biggest weakness of polling is that the client has to keep asking the server for any new data. This results in a lot of empty responses, creating HTTP overhead.
+
 ### HTTP Long-Polling
 - This is a variation of the traditional polling technique that allows the server to push additional information to the client whenever the data is available.
 - The client requests information from the server just like normal polling, but with the expectation that the server may not respond immediately. This leads this technique to sometimes be referred to as a "Hanging GET".
@@ -275,12 +299,14 @@ There are multiple constraints on the different operations that can be preformed
   - When an update is available, the server sends a full response to the client.
   - The client then typically immediately sends a new long-poll request back to the server.
   - Each long-poll request has a timeout. The client has to reconnect periodically after the connection is closed due to timeouts.
+  
 ### WebSockets
 - **WebSockets** provide Full Duplex communication channels over a single TCP connection. This means it provides a persistent connection between a client and a server that both parties can use to start sending data at any time.
 - A client establishes a WebSocket connection through a process know as a WebSocket handshake.
   - If this process succeeds, the server and the client can exchange data in both directions at any time.
 - The WebSocket protocol enables communication between a client and a server with lower overheads, facilitating real-time data transfer from and to the server. 
 - This is analogous to a two-way ongoing conversation between a client and a server.
+
 ### Server-Sent Events (SSEs)
 - Under **SSEs** the client establishes a persistent long-term connection with the server. The server uses this connection to send data to a client. If the client wants to send data to the server, it would have to use an additional technology/protocol to do so.
 - Process:
