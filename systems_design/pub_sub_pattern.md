@@ -1,0 +1,12 @@
+# Publish/Subscribe Pattern
+- This is a means to handle updating network partitions when new data is available.
+- Comprised of 3 main entities
+  - **Publishers** - The servers that publish data to the topics
+  - **Topics** - Channels of specific information. These typically contain a list of all of their subscribers.
+  - **Subscribers** - The clients that are subscribed to particular topics
+- As apposed to a steaming model, where the clients subscribe directly to the streaming server, the subscribers here only subscribe to the topics.
+- Data flow:
+  - A publisher publishes data to a topic
+  - The subscribers see that new data is available on the topic and fetch that data.
+- In a pub/sub messages are guaranteed to be delivered to the subscribers at least once. **Sometimes messages are sent more than once make sure this is OK for your system when considering implementing a pub/sub pattern.**
+  - **Idempotent operation** - an operation that has the same outcome regardless of how many times it has been done. For example an operation that sets a status to "complete" will only ever result in a status of "complete", thus this is an idempotent operation. An example of a non-idempotent operation is an operation that increments a value by 1, each time this operation is performed the modified value will have a different result.
