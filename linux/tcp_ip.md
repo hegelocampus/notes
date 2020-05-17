@@ -74,4 +74,33 @@
 	- NAT uses one interface's IP address to handle traffic for multiple machines.
 	- IP private address spaces are addresses that multiple sites can use at once, as long as the addresses are not visible to the Internet.
 	- Anycast addressing shares one IP address among several machines.
+- **The mapping from IP addresses to hardware addresses is implemented at the link layer of the TCP/IP model.** 
+  - On networks such as Ethernet that support broadcasting (that is, networks that allow packets to be addressed to "all hosts on this physical network"), senders use the ARP protocol to discover mappings without assistance from a system administrator.
+  - In IPv6, an interface's MAC address is often used as part of the IP address, making the translation between IP and hardware addressing virtually automatic.
+
+### Hostname "addressing"
+- IP addresses are sequences of numbers, so they are hard for people to remember.
+- Operating systems allow one or more hostnames to be associated with an IP address. This allows users users to be able to type `rfc-editor.org` instead of `4.31.198.491`.
+- The hostname mapping can be setup in several ways, from using the static `/etc/hosts` file, to the LDAP database system, to DNS, the world-wide Domain Name System.
+- **Hostnames are really just convenient shorthand for IP addresses, and as such, they refer to network interfaces rather than computers.**
+
+### Ports
+- IP addresses identify machine's network interfaces, but they are not specific enough to address individual processes or services, many of which might be actively using the network at once. TCP and UDP extend IP address with a concept know as a port.
+- **Port** - a 16-bit number that supplements the IP address to specify a particular communication channel. Valid ports range from 1-65535
+- Standard services such as SMTP, SSH, and HTTP associate themselves with "well known" ports that are defined in `/etc/services`
+  - This file is part of the infrastructure and you should never need to modify it. Although you can if you want to add a non-standard service.
+- TCP and UDP have ports that have the same sets of potential values, **despite this the port spaces are entirely separate and unrelated.** Thus, firewalls must be configured separately for each of these protocols.
+- To prevent impersonation of system services UNIX systems restrict programs from binding to port numbers under 1,024 unless they are run as root or have an appropriate Linux capability. This restriction only applies to internal processes though, anyone can communicate with a server running on a low port number.
+  - This is actually mostly a nuisance nowadays though, it is often more secure to run standard services on unprivileged ports as nonroot users and to forward network traffic to these high-numbered ports through a load balancer or some other type of network appliance.
+
+### Address types
+- The IP layer defines several broad types of address, some of which have direct counterparts at the link layer.
+  - **Unicast** - addresses that refer to a single network interface.
+  - **Multicast** - addresses that simultaneously target a group of hosts.
+  - **Broadcast** - addresses that include all hosts on the local subnet.
+  - **Anycast** - addresses that resolve to any one of a group of hosts.
+	- This is largely unused on today's Internet, but it's slightly more popular with IPv6. IPv6 broadcast addresses are really just specialized forms of multicast addressing.
+	- Anycast addresses bring load balancing to the network layer by allowing packets to be delivered to whichever of several destinations is closest in terms of network routing.
+
+## IP Addresses
 
