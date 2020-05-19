@@ -167,3 +167,17 @@
   - This file lists the DNS domains that should be searched to resolve names that are incomplete and the IP address of the name servers to contact for name lookups.
   - This should list the "closest" stable name server first as the servers are contacted in order.
 
+## Network Troubleshooting
+- Good core principles:
+  - Make one change at a time. Test each change to make sure that it had the effect you intended.
+  - Document the situation as it was before you got involved, and document every change you make along the way.
+  - Start at one end of a system or network and work through the system's critical components until you reach a problem. For example, you can start by looking at the network configuration on a client, work your way up to the physical connections, then look at the network hardware, and finally check the server's physical connections and software configuration.
+  - Or, use the layers of the network to negotiate the problem. Start at the "top" or the "bottom" and work your way through the protocol stack.
+
+### Debugging tools
+- `ping` is a good place to start.
+  - If ping normally works and it doesn't work that means something is _very_ wrong, and no other debugging tools here will likely work, especially if you are attempting to ping a local host.
+- `traceroute` - uncovers the sequence of gateways through which an IP packet travels to reach its destination.
+  - Syntax is `traceroute hostname` where hostname is either a DNS name or an IP address.
+  - The output is simply a list of hosts, starting with the first gateway and ending at the destination.
+- `tcdump` - command-line packet sniffer
