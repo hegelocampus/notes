@@ -103,4 +103,67 @@
 	- Anycast addresses bring load balancing to the network layer by allowing packets to be delivered to whichever of several destinations is closest in terms of network routing.
 
 ## IP Addresses
+- With the exception of multicast addresses, **Internet addresses consist of a network portion and a host portion**
+  - The network portion identifies a logical network to which the address refers.
+  - The host portion identifies a node on that network.
+- IPv4 
+  - Addresses are 4 bytes long and the boundary between network and host portions is set administratively.
+  - Written as decimal numbers, one for each byte, separated by periods; for example 209.85.171.147. The leftmost byte is the most significant and is always part of the network portion.
+  - When 127 is the first byte it denotes the "loopback network" 
+	- This is a fictitious network that has no real hardware interface and only one host.
+	- **The loopback address 127.0.0.1 always refers to the current host.** Its symbolic name is "localhost"
+- IPv6 
+  - Addresses are 16 bytes long and the network portion and host portion are always 8 bytes each.
+  - IPv6 addresses and their text-formatted equivalents are a bit more complicated. You can find details about them on page 394.
+
+## Routing
+- **Routing** is the process of directing a packet through the maze of networks that stand between its source and its destination.
+- Routing information takes the form of rules ("routes"), such as "To reach network A, send packets through machine C." There can also be a default route that tells what to do with packets bound for a network to which no explicit route exists.
+- Routing information is stored in a table in the kernel. 
+  - Each table entry has several parameters, including a mask for each listed network.
+  - To route a packet to a particular address, the kernel picks the most specific of the matching routes - that is the one with the longest mask.
+  - **If the kernel finds no relevant route and no default route, it returns a "network unreachable" ICMP error to the sender.**
+- "Routing" is commonly used to mean two distinct things:
+  - Looking up a network address in the routing table as part of the process of forwarding a packet towards its destination.
+  - Building the routing table in the first place.
+
+### Routing tables
+- You can view a machine's routing table with `ip route show`
+- An entry's gateway field must contain the full IP address of a local network interface or adjacent host; on Linux kernels it can be 0.0.0.0 to invoke the default gateway.
+- **A host can route packets only to gateway machines that are reachable through a directly connected network.** The local host's job is limited to moving packets one hop closer to their destinations, so it is pointless to include information about nonadjacent gateways in the local routing table.
+- Routing tables can be configured statically, dynamically, or with a combination of both.
+  - Static routes remain in the routing table as long as the system is up. 
+	- They are often set at boot time from one of the system startup scripts.
+	- A static route can be entered explicitly with the `ip` command. 
+	- Most machines on a local area network have only one way to get out to the rest of the network, so the routing problem is easy. A default route added at boot time suffices to point towards the way out.
+  - Dynamic routes are required on more complicated network topologies.
+	- Dynamic routing is implemented by a daemon process that maintains and modifies the routing table. This daemon communicates with daemons on different hosts to discover the topology of the network and to figure out how to reach distant networks. There are several different daemons available to preform this task.
+
+## DHCP: The Dynamic Host Configuration Protocol
+- When you plug a device or computer into a network, it usually obtains an IP address for itself on the local network, sets up an appropriate default route, and connects itself to a local DNS server. **The Dynamic Host Configuration Protocol (DHCP)** is what makes this possible.
+- DHCP lets a DHCP client "lease" a variety of network and administrative parameters from a central server that is authorize to distribute them.
+- Leasable parameters include:
+  - IP addresses and netmasks
+  - Gateways (default routes)
+  - DNS name servers
+  - Syslog hosts
+  - WINS servers, X font servers, proxy servers, NTP servers.
+  - TFTP servers (for loading a boot image)
+- Clients must report back to the DHCP server periodically to renew their leases. 
+  - If a lease is not renewed it will eventually expire, making it free to be reassigned by the DHCP server.
+  - The lease period is configurable, but it is typically quite long (hours or days).
+
+## Basic Network Configuration
+- Here is the process to add a new machine to a local network:
+  - Assign a unique IP address and hostname
+  - Configure network interfaces and IP addresses
+  - Set up a default route and perhaps fancier routing.
+  - Point to a DNS name server to allow access to the rest of the Internet.
+- If you rely on DHCP for basic provisioning, most of the configuration chores for a new machine are performed on the DHCP server rather than a new machine itself.
+- **After making any change that might affect startup, always reboot to verify that the machine comes back up correctly.** This will save you if 6 months later when the power failed and the machine isn't booting and you have no idea why.
+
+### DNS configuration
+- **DNS configuration** is set in the `/etc/resolv.conf` file.
+  - This file lists the DNS domains that should be searched to resolve names that are incomplete and the IP address of the name servers to contact for name lookups.
+  - This should list the "closest" stable name server first as the servers are contacted in order.
 
