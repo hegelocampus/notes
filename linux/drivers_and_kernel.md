@@ -1,0 +1,15 @@
+# Drivers and the Kernel
+- The kernel is responsible for enforcing rules, sharing resources, and providing the core services that user processes rely on.
+- The kernel hides the details of the system's hardware underneath an abstract, high-level interface. It's akin to an API for application programmers: a well-defined interface that provides useful facilities for interfacing with the system.
+- The kernel provides five basic features:
+  - Management and abstraction of hardware devices
+  - Processes and threads (and ways to communicate among them)
+  - I/O facilities (filesystems, network interfaces, serial interfaces, etc.)
+  - Housekeeping functions (startup, shutdown, timers, multitasking, etc.)
+- Only device drivers are aware of the specific capabilities and communication protocols of the system's hardware.
+  - User programs and the rest of the kernel are largely independent of that knowledge.
+  - For example, a filesystem on a disk is very different from a network filesystem, but the kernel's VFS layer makes them look the same to user processes and to other parts of the kernel.
+- Processes (and threads, their lightweight cousins) are mechanisms through which the kernel implements CPU time sharing and memory protection.
+  - The kernel fluidly switches among the system's processes, giving each runnable thread a small slice of time in which to get work done.
+  - The kernel prevents processes from reading and writing each other's memory spaces unless they have explicit permission to do so.
+  - The memory management system defines an address space for each process and creates the illusion that the process own an essentially unlimited region of contiguous memory. In reality, different processes' memory pages are jumbled together in the system's physical memory. Only the kernel's bookkeeping and memory protection schemes keep them sorted out.
