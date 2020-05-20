@@ -103,7 +103,7 @@ $ vipw
   - Because of this every shell, program, and terminal window has its own distinct copy of the environment that can be modified separately
 
 ### Common filter commands
-- Any well-behaved command that reads STDIN and writes STDOUT can be used as a filter (that is, a component of a pipeline) to process data.
+Any well-behaved command that reads STDIN and writes STDOUT can be used as a filter (that is, a component of a pipeline) to process data.
 - `cut` - separate lines into fields
   - The `cut` command prints selected portions of its input lines. It most commonly extracts delimited fields, and it can also return segments defined by column boundaries.
   - The default delimiter is <Tab>, but you can change delimiters with the `-d` option. The `-f` options specifies which fields to include in the output.
@@ -124,3 +124,119 @@ $ cut -d: -f7 /etc/passwd | sort | uniq - c
 - `head` and `tail` - Read the beginning or end of a file
   - You can use `-n` to pass the number of lines you want.
   - For interactive use, `head` has been made obsolete by `less`
+- `grep` - Search text
+  - This is a fairly simple implantation of regular expressions, if you need more power you should use Ruby or Python
+
+## sh Scripting
+- `sh` is great for simple scripts that automate things you'd otherwise be typing on the command line.
+- Once an `sh` script gets above 50 lines or so, or when you need features that `sh` doesn't have, its time to move to Python or Ruby.
+
+### Execution
+- `sh` comments start with a sharp (`#`) and continue until the end of the line.
+- The first line of a `sh` script is know as the "shebang" statement and declares the text file to be a script for interpretation by `/bin/sh` (which might itself link to `dash` or `bash`)
+  - If you need your script to run under `bash` or another interpreter that might not have the same command path on every system, you can use `/usr/bin/env` to search your `PATH` environment variable for a particular command, e.g., `#!/usr/bin/env ruby`
+- To prepare a script for running, you just need to turn on its execute bit
+```bash
+$ chmod +x helloworld
+$ ./helloworld
+Hello, world!
+```
+- You can also invoke the shell as an interpreter directly:
+```bash
+$ sh helloworld
+Hello, world!
+$ source helloworld
+Hello, world!
+```
+- The first command here runs `helloworld` in a new instance of `sh`, the second makes your existing login shell read and executer the contents of the file.
+- Good approach for developing `sh` scripts
+  - Develop the script as a pipeline, one step at a time, entirely on the command line. Use `bash` for this process even though the eventual interpreter might be `dash` or another `sh` variant.
+  - Send output to standard output (using `echo`) and check to be sure it looks right.
+  - At each step, use the shell's command history to recall pipelines and the shell's editing features to tweak them.
+  - Until the output looks right, you haven't actually done anything, so there's nothing to undo if the command is incorrect.
+  - Once the output is correct, execute the actual commands and verify that they worked as you intended
+  - Use `fc` to capture your work, then clean it up and save it.
+
+### Input and output
+- The `echo` command is crude but easy. For more control over your output, use `printf` instead.
+
+### Spaces in filenames
+- Unfortunately filenames are often riddled with spaces. Legacy software tends to break when spaces appear in filenames because spaces are bad, but you (and your scripts) need to be prepared for dealing with them.
+- In the shell and in scripts, spaceful filenames can be quoted to keep their pieces together.
+- You can also escape individual spaces with a backslash
+	
+### Command-line arguments and functions
+- When command-line arguments are passed to a script, they become variables whose names are numbers. `$1` is the first command-line argument, `$2` is the second , and so on. 
+- `$0` is the name by which the script was invoked.
+- `$#` contains the number of command-line arguments that are supplied.
+- `$*` contains all the arguments at once.
+- If you call a script without arguments or with inappropriate arguments, the script should print a short usage message to remind you how to use it.
+  - If the arguments are invalid, the script should also throw a nonzero exit code, indicating failure.
+- Arguments to `sh` functions are also treated like command-line arguments.
+
+### Control flow
+- Here's an if statement, note it begins with `if`, ends with `fi`, and `elif` is used for else if blocks
+```bash
+if [ $base -eq 1 ] && [ $dm -eq 1]; then
+  installDMBase
+elif [ $base -ne 1 ] && [ $dm -eq 1]; then
+  installBase
+elif [ $base -eq 1 ] && [ $dm -ne 1]; then
+  installDM
+else
+  echo '==> Installing nothing'
+fi
+```
+- The brackets are actually a shorthand way of invoking `test` and aren't actually required, although they are frequently used. (It isn't actually technically true that they just run `(/bin/test` if you are using a modern shell, they are actually just built in, but this _is_ how it used to be)
+
+#### Elementary sh comparison operators
+String  | Numeric | True if
+------- | ------- | -------
+`x = y`   | `x -eq y` | x is equal to y
+`x != y`  | `x -nq y` | x is not equal to y
+`x < y`   | `x -lt y` | x is less than y (**The `<` must be backslash-escaped to prevent being interpreted as an input or output redirection**)
+n/a     | `x -le y` | x is less than or equal to y
+`x > y`   | `x -gt y` | x is greater than y (**The `>` must be backslash-escaped to prevent being interpreted as an input or output redirection**)
+n/a     | `x -ge y` | x is greater than or equal to y
+`-n x`    | n/a     | x is not null
+`-z x`    | n/a     | x is null
+
+- `sh` is fantastic in its operations for evaluating the properties for files
+#### `sh` file evaluation operators
+| Operator         | True if
+| ---------------  | -------
+| `-d file`          | file exists and is a directory
+| `-e file`          | file exists
+| `-f file`          | file exists and is a regular file
+| `-r file`          | User has read permission on file
+| `-s file`          | file exists and is not empty
+| `-w file`          | User has read permission on file
+| `file1 -nt file2`  | `file1` is newer than `file2`
+| `file1 -ot file2`  | `file1` is older than `file2`
+
+- `case` is often used over `elif` for clarity
+  - Of note is the closing parenthesis after each condition and the two semicolons that follow the statement block to be executed when a condition is met.
+```bash
+case $message_level in
+  0) message_level_text="Error" ;;
+  1) message_level_text="Warning" ;;
+  2) message_level_text="Info" ;;
+  3) message_level_text="Debug" ;;
+  *) message_level_text="Other" 
+esac
+```
+
+### Loops
+- `sh`'s `for...in` construction is great for working on groups of values or files, especially when combined with filename globbing.
+
+```bash
+#!/bin/sh
+
+suffix=BACKUP--`date + %Y-%m-%d-%H%M`
+
+for script in *.sh; do
+  newname="$script.$suffix"
+  echo "Copying $script to $newname..."
+  cp -p $script $newname
+done
+```
