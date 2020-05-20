@@ -253,3 +253,4 @@ done
 ### Arithmetic
 - All `sh` variables are string valued, so `sh` does not distinguish between the number 1 and the character string "1" in assignments.
 - You can use `$((foo + bar))` to force numeric evaluation.
+
