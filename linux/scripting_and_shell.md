@@ -240,3 +240,16 @@ for script in *.sh; do
   cp -p $script $newname
 done
 ```
+- Any whitespace-separated list of things can be the target of `for...in`
+- `bash`, but not vanilla `sh`, also has a more familiar `for` loop structure from traditional programming languages in which you specify starting, increment, and termination clauses.
+```bash
+# bash-specific
+for (( i=0 ; i < $CPU_COUNT ; i++ )); do
+  CPU_LIST="$CPU_LIST $i"
+done
+```
+- `sh` also has `while` loops
+
+### Arithmetic
+- All `sh` variables are string valued, so `sh` does not distinguish between the number 1 and the character string "1" in assignments.
+- You can use `$((foo + bar))` to force numeric evaluation.
