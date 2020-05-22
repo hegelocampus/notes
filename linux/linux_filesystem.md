@@ -19,3 +19,12 @@
 | 6       | 110      | `rw-`     |
 | 7       | 111      | `rwx`     |
 
+#### `chmod`'s mnemonic syntax
+| Spec       | Meaning                                                                 |
+| :--------: | :---------------------------------------------------------------------: |
+| `u+w`        | Write permission for the owner of the file                              |
+| `ug=rw,o=r`  | Gives `r/w` permissions to owner and group, and read permission to others |
+| `a-x`        | Removes execute permission for all categories (owner/group/other)       |
+| `ug=srx,o=`  | Makes setuid/setgid and gives `r/x` permissions to only owner and group   |
+| `g=u`        | Makes the group permissions be the same as the owner permissions        |
+
