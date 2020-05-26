@@ -157,3 +157,31 @@ $ sudo pkill -u bee
 - You might occasionally see "zombie" processes that have finished execution but have not yet had their status collected by their parent process (or by `init` or `systemd`). **If you see zombies hanging around, check their PPIDs with `ps` to find out where they're coming from.**
 
 ## `ps`: Monitor Processes
+- the `ps` command is the system admin's main tool for monitoring processes.
+- `ps` is closely tied to the kernel's handling of processes, so it tends to reflect all the vendor's underlying kernel changes.
+- Note that Linux's `ps` is a little weird in that `ps -a` isn't the same as `ps a`
+- The most important thing you need to know is `ps aux`
+  - The `a` option says show all processes, the `x` says show even processes that don't have a control terminal, and `u` selects the "user oriented" output format that displays a little bit more useful information for a user than the default columns.
+- Command names that appear in brackets aren't really commands, but rather kernel threads scheduled as processes.
+- It is command to `grep` the output of `ps` get find the PID of a command:
+```bash
+$ ps aux | grep sshd
+root  6811 0.0 0.0  78056 1340 ?     Ss 16:04 0:00 /usr/sbin/sshd
+bee  13961 0.0 0.0 110408  868 pts/1 S+ 20:37 0:00 grep /usr/sbin/sshd
+```
+- Note that the `ps` output includes the `grep` command itself since it includes the desired text. You can remove this line using `grep -v`:
+```bash
+$ ps aux | grep -v grep | grep sshd
+root  6811 0.0 0.0  78056 1340 ?     Ss 16:04 0:00 /usr/sbin/sshd
+```
+- You can also use `pidof` to retrieve PID of a process:
+```bash
+$ pidof /user/sbin/sshd
+6811
+```
+- Or the `pgrep` utility:
+```bash
+$ pgrep sshd
+6811
+```
+- The downside to these is that they show all processes that match the passed string. A simple `grep` is often much more flexible.
