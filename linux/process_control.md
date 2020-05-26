@@ -112,3 +112,4 @@
 |  30  | `USR1`   | User-defined #1       | Terminate  | Yes        | Yes        | No         |
 |  31  | `USR2`   | User-defined #2       | Terminate  | Yes        | Yes        | No         |
 You should look at `man signal` to get more information.
+
