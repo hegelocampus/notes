@@ -149,3 +149,11 @@ $ sudo pkill -u bee
 ```
 
 ### Process and threaded states
+- A process can be suspended with a `STOP` signal and returned to its active state with a `CONT` signal.
+- Even when nominally runnable, threads must often wait for the kernel to complete some background work for them before they can continue execution.
+- **A process is generally reported as "sleeping" when all its treads are asleep.**
+  - Interactive shells and system daemons spend most of their time sleeping, waiting for terminal input or network connections.
+  - A process that is sleeping generally receives no CUP-time unless it receives a signal or a response to one of its I/O requests.
+- You might occasionally see "zombie" processes that have finished execution but have not yet had their status collected by their parent process (or by `init` or `systemd`). **If you see zombies hanging around, check their PPIDs with `ps` to find out where they're coming from.**
+
+## `ps`: Monitor Processes
