@@ -96,4 +96,19 @@
   - **The handler for a newly unblocked signal is called only once, even if the signal was received several times while reception was blocked.**
 
 #### Common signals you need to be familiar with
-| # | Name | Description | Default | Can catch? | Can block? | Dump core? |
+|  #   | Name    | Description          | Default    | Can catch? | Can block? | Dump core? |
+| :--: | ------- | -------------------- | ---------- | :--------: | :--------: | :--------: |
+|  1   | `HUP`     | Hangup               | Terminate  | Yes        | Yes        | No         |
+|  2   | `INT`     | Interrupt            | Terminate  | Yes        | Yes        | No         |
+|  3   | `QUIT`    | Quit                 | Terminate  | Yes        | Yes        | Yes        |
+|  9   | `KILL`    | Kill                 | Terminate  | No         | No         | No         |
+|  10  | `BUS`     | Bus error            | Terminate  | Yes        | Yes        | Yes        |
+|  11  | `SEGV`    | Segmentation fault   | Terminate  | Yes        | Yes        | Yes        |
+|  15  | `TERM`    | Software Termination | Terminate  | Yes        | Yes        | No         |
+|  17  | `STOP`    | Stop                 | Stop       | No         | No         | No         |
+|  18  | `TSTP`    | Keyboard stop        | Stop       | Yes        | Yes        | No         |
+|  19  | `CONT`    | Continue after stop  | Ignore     | Yes        | No         | No         |
+|  28  | `WINCH`   | Window changed       | Ignore     | Yes        | Yes        | No         |
+|  30  | `USR1`   | User-defined #1       | Terminate  | Yes        | Yes        | No         |
+|  31  | `USR2`   | User-defined #2       | Terminate  | Yes        | Yes        | No         |
+You should look at `man signal` to get more information.
