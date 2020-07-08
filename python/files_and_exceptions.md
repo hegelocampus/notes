@@ -74,4 +74,25 @@ else:
 - You many want to store user data for use later. It is common to store this data is a JSON file.
 
 ### Using `json.dump()` and `json.load()`
-- `json.dump()` takes two arguments: a pience of data to store and a file object it can use to store the data.
+- `json.dump()` takes two arguments: a piece of data to store and a file object it can use to store the data.
+
+```python
+import json
+
+numbers = [2, 3, 5, 7, 11, 13]
+
+filename = 'numbers.json'
+with open(filename, 'w') as f:
+  json.dump(numbers, f)
+```
+
+- `json.load()` takes just one argument, the file object it should use to store the data.
+
+```python
+import json
+
+filename = 'numbers.json'
+with open(filename) as f:
+  numbers = json.load(f)
+```
+
